@@ -1,0 +1,159 @@
+{
+  "commands": [
+    {
+      "usage": "apply",
+      "help": "Apply objects from some type",
+      "parent": "root"
+    },
+    {
+      "usage": "create",
+      "help": "Create objects",
+      "parent": "root"
+    },
+    {
+      "usage": "delete",
+      "help": "Delete objects",
+      "parent": "root"
+    },
+    {
+      "usage": "generate",
+      "help": "Generate objects from some type",
+      "parent": "root"
+    },
+    {
+      "usage": "help",
+      "help": "Help about any command",
+      "parent": "root"
+    },
+    {
+      "usage": "init",
+      "help": "Initialize a working directory",
+      "parent": "root"
+    },
+    {
+      "usage": "login",
+      "help": "User login",
+      "parent": "root"
+    },
+    {
+      "usage": "set",
+      "help": "Set objects",
+      "parent": "root"
+    },
+    {
+      "usage": "version",
+      "help": "Print version",
+      "parent": "root"
+    },
+    {
+      "usage": "completion",
+      "help": "Generate auto-completion",
+      "parent": "root"
+    },
+    {
+      "usage": "darwin",
+      "help": "Darwin commands",
+      "parent": "root"
+    },
+    {
+      "usage": "deploy",
+      "help": "Deploy Module Darwin",
+      "formula": {
+        "path": "darwin/deploy",
+        "bin": "darwin-deploy-${so}"
+      },
+      "parent": "root_darwin"
+    },
+    {
+      "usage": "user",
+      "help": "Create user",
+      "parent": "root_create"
+    },
+    {
+      "usage": "user",
+      "help": "Delete user",
+      "parent": "root_delete"
+    },
+    {
+      "usage": "zsh",
+      "help": "Generates auto-completion for zsh",
+      "parent": "root_completion"
+    },
+    {
+      "usage": "bash",
+      "help": "Generates auto-completion for bash",
+      "parent": "root_completion"
+    },
+    {
+      "usage": "scaffold",
+      "help": "Generates a scaffold by some template",
+      "parent": "root_generate"
+    },
+    {
+      "usage": "github",
+      "help": "Apply GitHub objects",
+      "parent": "root_generate"
+    },
+    {
+      "usage": "jenkins",
+      "help": "Apply Jenkins objects",
+      "parent": "root_generate"
+    },
+    {
+      "usage": "job",
+      "help": "Apply Jenkins Job CI",
+      "formula": {
+        "path": "jenkins/jobs",
+        "bin": "jobs-${so}"
+      },
+      "parent": "root_generate_jenkins"
+    },
+    {
+      "usage": "zup-webhook",
+      "help": "Apply Zup WebHook CI and Zup Bot",
+      "formula": {
+        "path": "github/zup-webhook",
+        "bin": "zup-webhook-${so}"
+      },
+      "parent": "root_generate_github"
+    },
+    {
+      "usage": "aws",
+      "help": "Apply Aws objects",
+      "parent": "root_apply"
+    },
+    {
+      "usage": "terraform",
+      "help": "Apply Aws terraform objects",
+      "formula": {
+        "path": "aws/terraform",
+        "bin": "terraform-cli-${so}"
+      },
+      "parent": "root_apply_aws"
+    },
+    {
+      "usage": "credential",
+      "help": "Set provider credential",
+      "parent": "root_set"
+    },
+    {
+      "usage": "coffee",
+      "help": "Generates a project by coffee template",
+      "formula": {
+        "path": "scaffold/coffee",
+        "bin": "coffee-${so}"
+      },
+      "parent": "root_generate_scaffold"
+    },
+    {
+      "usage": "spring-iti",
+      "help": "Generates a project for kotlin/java",
+      "formula": {
+        "path": "scaffold/spring-iti",
+        "bin": "spring-iti-${so}"
+      },
+      "parent": "root_generate_scaffold"
+    }
+  ],
+  "version": "1.0.0"
+}

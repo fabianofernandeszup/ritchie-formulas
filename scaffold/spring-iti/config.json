@@ -1,0 +1,55 @@
+{
+  "description": "Create your microservice scaffold",
+  "inputs" : [
+    {
+      "name" : "packaging",
+      "type" : "text",
+      "default" : "jar",
+      "label" : "Pick your packaging type[jar]: "
+    },
+    {
+      "name" : "java_version",
+      "type" : "text",
+      "default" : "11",
+      "label" : "Pick your java version [11]: "
+    },
+    {
+      "name" : "language",
+      "type" : "text",
+      "default" : "kotlin",
+      "items" : ["kotlin", "java"],
+      "label" : "Select your language: "
+    },
+    {
+      "name" : "group_id",
+      "type" : "text",
+      "label" : "Type your groupId[ex.: itau.iti.demo]: "
+    },
+    {
+      "name" : "artifact_id",
+      "type" : "text",
+      "label" : "Type your artifactId[ex.: demo]: "
+    },
+    {
+      "name" : "version",
+      "type" : "text",
+      "default" : "0.0.1-SNAPSHOT",
+      "label" : "Type your version[0.0.1-SNAPSHOT]: "
+    },
+    {
+      "name" : "name",
+      "type" : "text",
+      "label" : "Type your project name[ex.: demo]: "
+    },
+    {
+      "name" : "description",
+      "type" : "text",
+      "label" : "Type the project`s description [ex.: project demo]: "
+    },
+    {
+      "name" : "package_name",
+      "type" : "text",
+      "label" : "Type your package name[ex.: itau.iti.demo]: "
+    }
+  ]
+}
