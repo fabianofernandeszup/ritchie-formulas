@@ -95,6 +95,20 @@
       "parent": "root_generate"
     },
     {
+      "usage": "vivo",
+      "help": "Apply Vivo objects",
+      "parent": "root_generate"
+    },
+    {
+      "usage": "deploy",
+      "help": "Deploy Vivo in PRD",
+      "formula": {
+        "path": "vivo/deploy",
+        "bin": "vivo-deploy-${so}"
+      },
+      "parent": "root_generate_vivo"
+    },
+    {
       "usage": "job",
       "help": "Apply Jenkins Job CI",
       "formula": {
