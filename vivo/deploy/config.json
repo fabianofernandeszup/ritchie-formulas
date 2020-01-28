@@ -1,0 +1,40 @@
+{
+  "description": "Deploy Vivo Easy",
+  "inputs" : [
+    {
+      "name" : "microservice_name",
+      "type" : "text",
+      "label" : "Microservice Name: [ex.: vivo-easy-application]"
+    },
+    {
+      "name" : "version",
+      "type" : "text",
+      "label" : "Version Microservice: [ex.: 1.0.0]"
+    },
+    {
+      "name" : "jenkins_user",
+      "type" : "CREDENTIAL_JENKINS_USERNAME"
+    },
+    {
+      "name" : "jenkins_token",
+      "type" : "CREDENTIAL_JENKINS_TOKEN"
+    },
+    {
+      "name" : "email_user",
+      "type" : "CREDENTIAL_EMAIL-ZUP_EMAIL"
+    },
+    {
+      "name" : "email_token",
+      "type" : "CREDENTIAL_EMAIL-ZUP_TOKEN"
+    },
+    {
+      "name" : "git_user",
+      "type" : "CREDENTIAL_GITHUB_USERNAME"
+    },
+
+    {
+      "name" : "git_token",
+      "type" : "CREDENTIAL_GITHUB_TOKEN"
+    }
+  ]
+}

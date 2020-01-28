@@ -5,7 +5,8 @@ WEBHOOK=github/zup-webhook
 JENKINS_JOB=jenkins/jobs
 SC_COFFEE=scaffold/coffee
 SC_SPRING=scaffold/spring-iti
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING)
+VIVO=vivo/deploy
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(VIVO)
 PWD_INITIAL=$(shell pwd)
 
 push-s3:
