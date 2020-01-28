@@ -41,11 +41,6 @@
       "parent": "root"
     },
     {
-      "usage": "version",
-      "help": "Print version",
-      "parent": "root"
-    },
-    {
       "usage": "completion",
       "help": "Generate auto-completion",
       "parent": "root"
