@@ -11,6 +11,7 @@ func main() {
 
 func loadInputs() deploy.Inputs {
 	return deploy.Inputs{
+		Environment:		os.Getenv("ENVIRONMENT"),
 		MicroserviceName:  	os.Getenv("MICROSERVICE_NAME"),
 		Version:			os.Getenv("VERSION"),
 		JenkinsUser:  		os.Getenv("JENKINS_USER"),

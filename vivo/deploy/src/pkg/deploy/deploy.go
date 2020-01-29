@@ -15,7 +15,9 @@ import (
 const (
 	zupGitUrl  = "https://api.github.com/repos/ZupIT/{{MICROSERVICE}}/git/refs"
 	zupGitTagsUrl = "https://api.github.com/repos/ZupIT/{{MICROSERVICE}}/tags"
-	zupJenkinsURL = "https://ci.zup.com.br/job/deploy-vivo-easy-dev-k8s/buildWithParameters?MICROSERVICE={{MICROSERVICE}}&VERSION={{VERSION}}" //TODO:: SWITCH ENVIROMENT TO PRD
+	zupJenkinsDevURL = "https://ci.zup.com.br/job/deploy-vivo-easy-dev-k8s/buildWithParameters?MICROSERVICE={{MICROSERVICE}}&VERSION={{VERSION}}" //DEV
+	zupJenkinsProdURL = "https://ci.zup.com.br/job/deploy-vivo-easy-prod-k8s/buildWithParameters?MICROSERVICE={{MICROSERVICE}}&VERSION={{VERSION}}" //PROD
+	zupJenkinsQaURL = "https://ci.zup.com.br/job/deploy-vivo-easy-qa-k8s/buildWithParameters?MICROSERVICE={{MICROSERVICE}}&VERSION={{VERSION}}" //QA
 	bodyBrancheGit = `{
     "ref": "refs/heads/{{NEWBRANCH}}",
     "sha": "{{SHA}}"
@@ -25,6 +27,7 @@ const (
 )
 
 type Inputs struct {
+	Environment			string
 	MicroserviceName	string
 	Version 			string
 	JenkinsUser			string
@@ -52,13 +55,16 @@ func (in Inputs) Run() {
 
 	urlGit := strings.ReplaceAll(zupGitUrl, "{{MICROSERVICE}}", in.MicroserviceName)
 	in.createBranch(urlGit)
+
+	zupJenkinsURL := in.getEnv()
+
 	urlJenkins := strings.ReplaceAll(zupJenkinsURL,"{{MICROSERVICE}}",in.MicroserviceName)
 	urlJenkins = strings.ReplaceAll(urlJenkins,"{{VERSION}}",in.Version)
 	resp := in.executeJobJenkins(urlJenkins)
 
 	if resp.Status == 201 {
 		log.Println("Pipeline running ...")
-		urlApprove := "https://ci.zup.com.br/job/deploy-vivo-easy-dev-k8s"
+		urlApprove := in.getEnv()
 		log.Println("Please approve changes to: ")
 		log.Println(urlApprove)
 		in.sendMail("Change executada com sucesso...\n Microserviço: "+in.MicroserviceName+" Versão: "+in.Version)
@@ -83,7 +89,7 @@ func (in Inputs) executeJobJenkins(urlJenkins string) Response {
 			log.Fatal("Timeout with Jenkins, please verify...")
 		}
 	}
-
+	zupJenkinsURL := in.getEnv()
 	urlZupJenkins := strings.ReplaceAll(zupJenkinsURL,"{{MICROSERVICE}}",in.MicroserviceName)
 	urlZupJenkins = strings.ReplaceAll(urlZupJenkins,"{{VERSION}}",in.Version)
 
@@ -200,4 +206,19 @@ func (in Inputs) sendMail(body string) {
 	for _,v := range to{
 		log.Println(v)
 	}
+}
+func (in Inputs)getEnv() string{
+	var zupJenkinsURL string
+
+	switch in.Environment {
+	case "prd":
+		zupJenkinsURL = zupJenkinsProdURL
+	case "qa":
+		zupJenkinsURL = zupJenkinsQaURL
+	case "dev":
+		zupJenkinsURL = zupJenkinsDevURL
+	default:
+		log.Fatal("Please use prd or qa or dev in Enviroment.")
+	}
+	return zupJenkinsURL
 }

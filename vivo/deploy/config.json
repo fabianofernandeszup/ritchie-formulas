@@ -2,6 +2,11 @@
   "description": "Deploy Vivo Easy",
   "inputs" : [
     {
+      "name" : "environment_name",
+      "type" : "text",
+      "label" : "Environment :[ex.: prod | qa | dev]"
+    },
+    {
       "name" : "microservice_name",
       "type" : "text",
       "label" : "Microservice Name: [ex.: vivo-easy-application]"
