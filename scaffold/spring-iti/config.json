@@ -50,6 +50,11 @@
       "name" : "package_name",
       "type" : "text",
       "label" : "Type your package name[ex.: itau.iti.demo]: "
+    },
+    {
+      "name" : "dependencies",
+      "type" : "text",
+      "label" : "Type the dependencies list [ex.: iti-web,iti-dynamodb,iti-kafka]: "
     }
   ]
 }

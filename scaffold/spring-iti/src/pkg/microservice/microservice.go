@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"spring-iti/pkg/file/fileutil"
 	"net/http"
 	"os"
+	"spring-iti/pkg/file/fileutil"
 	"strings"
 )
 
@@ -22,6 +22,7 @@ type Inputs struct {
 	Name string
 	Description string
 	PackageName string
+	Dependencies string
 }
 
 func Run(inputs Inputs) {
@@ -69,7 +70,7 @@ func downloadZipProject(inputs Inputs) (string, error) {
 	q.Add("name", inputs.Name)
 	q.Add("description", inputs.Description)
 	q.Add("packageName", inputs.PackageName)
-	q.Add("dependencies", "iti-web")
+	q.Add("dependencies", inputs.Dependencies)
 	req.URL.RawQuery = q.Encode()
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
