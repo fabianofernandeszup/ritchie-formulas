@@ -11,14 +11,15 @@ func main() {
 
 func loadInputs() microservice.Inputs {
 	return microservice.Inputs{
-		Packaging:   os.Getenv("PACKAGING"),
-		JavaVersion: os.Getenv("JAVA_VERSION"),
-		Language:    os.Getenv("LANGUAGE"),
-		GroupId:     os.Getenv("GROUP_ID"),
-		ArtifactId:  os.Getenv("ARTIFACT_ID"),
-		Version:     os.Getenv("VERSION"),
-		Name:        os.Getenv("NAME"),
-		Description: os.Getenv("DESCRIPTION"),
-		PackageName: os.Getenv("PACKAGE_NAME"),
+		Packaging:   	os.Getenv("PACKAGING"),
+		JavaVersion: 	os.Getenv("JAVA_VERSION"),
+		Language:    	os.Getenv("LANGUAGE"),
+		GroupId:     	os.Getenv("GROUP_ID"),
+		ArtifactId:  	os.Getenv("ARTIFACT_ID"),
+		Version:     	os.Getenv("VERSION"),
+		Name:        	os.Getenv("NAME"),
+		Description:	os.Getenv("DESCRIPTION"),
+		PackageName:	os.Getenv("PACKAGE_NAME"),
+		Dependencies: 	os.Getenv("DEPENDENCIES"),
 	}
 }
