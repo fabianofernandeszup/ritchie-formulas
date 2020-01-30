@@ -5,7 +5,9 @@ WEBHOOK=github/zup-webhook
 JENKINS_JOB=jenkins/jobs
 SC_COFFEE=scaffold/coffee
 SC_SPRING=scaffold/spring-iti
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING)
+KAFKA_TOPIC_LIST=kafka/list/topic
+KAFKA_TOPIC_CREATE=kafka/create/topic
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(KAFKA_TOPIC_LIST) $(KAFKA_TOPIC_CREATE)
 PWD_INITIAL=$(shell pwd)
 
 push-s3:

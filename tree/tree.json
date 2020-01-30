@@ -60,6 +60,39 @@
       "parent": "root_darwin"
     },
     {
+      "usage": "kafka",
+      "help": "Kafka commands",
+      "parent": "root"
+    },
+    {
+      "usage": "list",
+      "help": "Kafka list commands",
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "create",
+      "help": "Kafka create commands",
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "topic",
+      "help": "List kafka topics",
+      "formula": {
+        "path": "kafka/list/topic",
+        "bin": "list-topic-${so}"
+      },
+      "parent": "root_kafka_list"
+    },
+    {
+      "usage": "topic",
+      "help": "Create kafka topics",
+      "formula": {
+        "path": "kafka/create/topic",
+        "bin": "create-topic-${so}"
+      },
+      "parent": "root_kafka_create"
+    },
+    {
       "usage": "user",
       "help": "Create user",
       "parent": "root_create"
