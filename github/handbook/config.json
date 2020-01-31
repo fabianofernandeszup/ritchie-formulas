@@ -1,0 +1,18 @@
+{
+  "description": "HandBook Application",
+  "inputs": [
+    {
+      "name": "repository_name",
+      "type": "text",
+      "label": "Repository Name: [ex.: vivo-easy-application]"
+    },
+    {
+      "name": "git_user",
+      "type": "CREDENTIAL_GITHUB_USERNAME"
+    },
+    {
+      "name": "git_token",
+      "type": "CREDENTIAL_GITHUB_TOKEN"
+    }
+  ]
+}
