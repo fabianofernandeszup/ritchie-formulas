@@ -4,7 +4,7 @@
     {
       "name" : "environment_name",
       "type" : "text",
-      "label" : "Environment :[ex.: prod | qa | dev]"
+      "label" : "Environment :[ex.: prd | qa | dev]"
     },
     {
       "name" : "microservice_name",
