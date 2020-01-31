@@ -25,4 +25,3 @@ push-s3:
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
-	for formula in $(FORMULAS); do mkdir -p formulas/$$formula && cp $$formula/config.json formulas/$$formula && cp -rf $$formula/bin formulas/$$formula; done
