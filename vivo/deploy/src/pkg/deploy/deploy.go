@@ -27,7 +27,7 @@ const (
 )
 
 type Inputs struct {
-	Environment			string
+	EnvironmentName		string
 	MicroserviceName	string
 	Version 			string
 	JenkinsUser			string
@@ -66,6 +66,8 @@ func (in Inputs) Run() {
 		log.Println("Pipeline running ...")
 		urlApprove := in.getEnv()
 		log.Println("Please approve changes to: ")
+		urlApprove = strings.ReplaceAll(urlApprove,"{{MICROSERVICE}}",in.MicroserviceName)
+		urlApprove = strings.ReplaceAll(urlApprove,"{{VERSION}}",in.Version)
 		log.Println(urlApprove)
 		in.sendMail("Change executada com sucesso...\n Microserviço: "+in.MicroserviceName+" Versão: "+in.Version)
 	}else {
@@ -189,6 +191,7 @@ func (in Inputs) sendMail(body string) {
 		           "rodrigo.pereira@zup.com.br","petterson.santos@zup.com.br","juliano.borges@zup.com.br",
 				   "nicolas.peixoto@zup.com.br"}
 
+
 	msg := "From: " + in.EmailUser + "\n" +
 		"To: " + strings.Join(to, ",") + "\n" +
 		"Subject: [Ritchie]Change realizada com sucesso!\n\n" +
@@ -210,7 +213,7 @@ func (in Inputs) sendMail(body string) {
 func (in Inputs)getEnv() string{
 	var zupJenkinsURL string
 
-	switch in.Environment {
+	switch in.EnvironmentName {
 	case "prd":
 		zupJenkinsURL = zupJenkinsProdURL
 	case "qa":
