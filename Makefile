@@ -7,9 +7,10 @@ SC_COFFEE=scaffold/coffee
 SC_SPRING=scaffold/spring-iti
 KAFKA_TOPIC_LIST=kafka/list/topic
 KAFKA_TOPIC_CREATE=kafka/create/topic
+KAFKA_CONSUME=kafka/consume
 VIVO=vivo/deploy
 
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(KAFKA_TOPIC_LIST) $(KAFKA_TOPIC_CREATE) $(VIVO)
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(KAFKA_TOPIC_LIST) $(KAFKA_TOPIC_CREATE) $(KAFKA_CONSUME) $(VIVO)
 PWD_INITIAL=$(shell pwd)
 
 push-s3:
@@ -24,3 +25,4 @@ push-s3:
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
+	for formula in $(FORMULAS); do mkdir -p formulas/$$formula && cp $$formula/config.json formulas/$$formula && cp -rf $$formula/bin formulas/$$formula; done

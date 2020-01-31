@@ -93,6 +93,15 @@
       "parent": "root_kafka_create"
     },
     {
+      "usage": "consume",
+      "help": "Consume kafka messages",
+      "formula": {
+        "path": "kafka/consume",
+        "bin": "consume-${so}"
+      },
+      "parent": "root_kafka"
+    },
+    {
       "usage": "user",
       "help": "Create user",
       "parent": "root_create"

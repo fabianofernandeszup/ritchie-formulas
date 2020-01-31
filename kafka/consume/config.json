@@ -1,0 +1,25 @@
+{
+  "description": "Consume messages from topics",
+  "inputs": [
+    {
+      "name": "url",
+      "type": "text",
+      "label": "Kafka url: "
+    },
+    {
+      "name": "topic",
+      "type": "text",
+      "label": "Topic: "
+    },
+    {
+      "name": "beginning",
+      "type": "bool",
+      "default": "false",
+      "items": [
+        "false",
+        "true"
+      ],
+      "label": "From beginning? "
+    }
+  ]
+}
