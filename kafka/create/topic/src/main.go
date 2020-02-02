@@ -20,7 +20,7 @@ func main() {
 }
 
 func loadInputs() (*topic.Inputs, error) {
-	u := os.Getenv("URL")
+	u := os.Getenv("URLS")
 	n := os.Getenv("NAME")
 	r := os.Getenv("REPLICATION")
 	p := os.Getenv("PARTITIONS")
@@ -35,7 +35,7 @@ func loadInputs() (*topic.Inputs, error) {
 		return nil, errors.New("partitions must be a number")
 	}
 
-	i := topic.Inputs{Url: u, Name: n, Replication: int16(re), Partitions: int32(pa)}
+	i := topic.Inputs{Urls: u, Name: n, Replication: int16(re), Partitions: int32(pa)}
 
 	return &i, nil
 }

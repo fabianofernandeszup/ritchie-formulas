@@ -11,6 +11,6 @@ func main() {
 }
 
 func loadInputs() topic.Inputs {
-	u := os.Getenv("URL")
-	return topic.Inputs{Url: u}
+	u := os.Getenv("URLS")
+	return topic.Inputs{Urls: u}
 }

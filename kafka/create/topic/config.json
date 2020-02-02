@@ -2,9 +2,9 @@
   "description": "Create topic",
   "inputs": [
     {
-      "name": "url",
+      "name": "urls",
       "type": "text",
-      "label": "Kafka url: "
+      "label": "Kafka urls: "
     },
     {
       "name": "name",

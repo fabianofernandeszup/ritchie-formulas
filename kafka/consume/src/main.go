@@ -8,14 +8,13 @@ import (
 )
 
 func main() {
-	consume.Consume(loadInputs())
+	consume.Run(loadInputs())
 }
 
 func loadInputs() consume.Inputs {
 	b, _ := strconv.ParseBool(os.Getenv("BEGINNING"))
-
 	return consume.Inputs{
-		Url:           os.Getenv("URL"),
+		Urls:          os.Getenv("URLS"),
 		Topic:         os.Getenv("TOPIC"),
 		FromBeginning: b,
 	}

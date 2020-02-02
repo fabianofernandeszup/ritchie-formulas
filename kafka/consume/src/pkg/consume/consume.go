@@ -6,25 +6,28 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"strings"
 	"sync"
 	"syscall"
 
 	"github.com/Shopify/sarama"
+	"github.com/hashicorp/go-uuid"
 
 	"consume/pkg/kafkautil"
 )
 
-const ritchieGroup = "ritchie_consumer_group"
+const ritchieGroupFormat = "ritchie_consumer_group_%s"
 
 type Inputs struct {
-	Url           string
+	Urls          string
 	Topic         string
 	FromBeginning bool
 }
 
-func Consume(i Inputs) {
+func Run(i Inputs) {
 	c := sarama.NewConfig()
 	c.Version = kafkautil.PromptVersion()
+	c.Consumer.Return.Errors = true
 
 	if i.FromBeginning {
 		c.Consumer.Offsets.Initial = sarama.OffsetOldest
@@ -35,7 +38,8 @@ func Consume(i Inputs) {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	client, err := sarama.NewConsumerGroup([]string{i.Url}, ritchieGroup, c)
+	uuid, _ := uuid.GenerateUUID()
+	client, err := sarama.NewConsumerGroup(strings.Split(i.Urls, ","), fmt.Sprintf(ritchieGroupFormat, uuid), c)
 	if err != nil {
 		log.Panicf("Error creating consumer group client: %v", err)
 	}
@@ -43,10 +47,10 @@ func Consume(i Inputs) {
 	wg := &sync.WaitGroup{}
 	wg.Add(1)
 	go func() {
-		defer wg.Done()
 		for {
 			if err := client.Consume(ctx, []string{i.Topic}, &consumer); err != nil {
-				log.Panicf("Error from consumer: %v", err)
+				fmt.Println(fmt.Sprintf("Error from consumer: %v", err))
+				os.Exit(1)
 			}
 			// check if context was cancelled, signaling that the consumer should stop
 			if ctx.Err() != nil {

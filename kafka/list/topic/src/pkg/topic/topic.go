@@ -3,6 +3,7 @@ package topic
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/Shopify/sarama"
 
@@ -10,14 +11,14 @@ import (
 )
 
 type Inputs struct {
-	Url string
+	Urls string
 }
 
 func List(i Inputs) {
 	c := sarama.NewConfig()
 	c.Version = kafkautil.PromptVersion()
 
-	ca, err := sarama.NewClusterAdmin([]string{i.Url}, c)
+	ca, err := sarama.NewClusterAdmin(strings.Split(i.Urls, ","), c)
 	if err != nil {
 		log.Println(err)
 		return

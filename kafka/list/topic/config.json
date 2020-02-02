@@ -2,9 +2,9 @@
   "description": "List topic names",
   "inputs" : [
     {
-      "name" : "url",
+      "name" : "urls",
       "type" : "text",
-      "label" : "Kafka url: "
+      "label" : "Kafka urls: "
     }
   ]
 }
