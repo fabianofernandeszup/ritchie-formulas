@@ -20,7 +20,7 @@ pipeline{
                         string(credentialsId: RITCHIE_AWS_SECRET_ACCESS_KEY, variable: 'aws_secret_access_key_unveil'),
                       ]) {
                         try{
-                            sh "AWS_ACCESS_KEY_ID=${aws_access_key_id_unveil} AWS_SECRET_ACCESS_KEY=${aws_secret_access_key_unveil} AWS_DEFAULT_REGION=${RITCHIE_AWS_REGION_PRODUCTION_MARTE} echo Here"
+                            sh "AWS_ACCESS_KEY_ID=${aws_access_key_id_unveil} AWS_SECRET_ACCESS_KEY=${aws_secret_access_key_unveil} AWS_DEFAULT_REGION=${RITCHIE_AWS_REGION_PRODUCTION_MARTE} make push-s3"
                         } catch (Error error){
                             echo "Error while building or pushing to s3"
                         }
@@ -30,6 +30,9 @@ pipeline{
       }
     }
     post {
+        success {
+            echo "Build and push successfully executed by Jenkins"
+        }
         failure {
             echo "Build failed"
         }
