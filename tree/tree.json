@@ -102,6 +102,15 @@
       "parent": "root_kafka"
     },
     {
+      "usage": "produce",
+      "help": "Produce kafka messages",
+      "formula": {
+        "path": "kafka/produce",
+        "bin": "produce-${so}"
+      },
+      "parent": "root_kafka"
+    },
+    {
       "usage": "user",
       "help": "Create user",
       "parent": "root_create"

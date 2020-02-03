@@ -1,0 +1,15 @@
+{
+  "description": "Produce messages for kafka",
+  "inputs": [
+    {
+      "name": "urls",
+      "type": "text",
+      "label": "Kafka urls: "
+    },
+    {
+      "name": "topic",
+      "type": "text",
+      "label": "Topic: "
+    }
+  ]
+}

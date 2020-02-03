@@ -38,8 +38,8 @@ func Run(i Inputs) {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	uuid, _ := uuid.GenerateUUID()
-	client, err := sarama.NewConsumerGroup(strings.Split(i.Urls, ","), fmt.Sprintf(ritchieGroupFormat, uuid), c)
+	id, _ := uuid.GenerateUUID()
+	client, err := sarama.NewConsumerGroup(strings.Split(i.Urls, ","), fmt.Sprintf(ritchieGroupFormat, id), c)
 	if err != nil {
 		log.Panicf("Error creating consumer group client: %v", err)
 	}
