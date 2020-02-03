@@ -3,7 +3,13 @@ def RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION
 def RITCHIE_AWS_REGION_PRODUCTION_MARTE = "sa-east-1"
 
 pipeline{
-    agent any
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+            dir '.'
+            args  '--privileged -v /var/run/docker.sock:/var/run/docker.sock -u 0:0'
+        }
+    }
     stages
     {
       stage("Building formulas and sending them to s3"){
