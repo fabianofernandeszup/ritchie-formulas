@@ -13,6 +13,11 @@ pipeline{
     stages
     {
       stage("Building formulas and sending them to s3"){
+           when {
+              expression {
+                  return branch_name =~ /^master/
+              }
+            }
             steps {
                 script{
 
