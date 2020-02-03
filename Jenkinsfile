@@ -2,7 +2,7 @@ def TERRAFORM_AWS_ACCESS_KEY_ID = env["TERRAFORM_AWS_ACCESS_KEY_ID"]
 def TERRAFORM_AWS_SECRET_ACCESS_KEY = env["TERRAFORM_AWS_SECRET_ACCESS_KEY"]
 
 pipeline{
-
+    agent any
     stages
     {
       stage("Building formulas and sending them to s3"){
