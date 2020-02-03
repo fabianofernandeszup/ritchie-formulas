@@ -1,5 +1,7 @@
-def TERRAFORM_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_PRODUCTION_MARTE"]
-def TERRAFORM_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION_MARTE"]
+def RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_PRODUCTION_MARTE"]
+def RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION_MARTE"]
+def RITCHIE_AWS_REGION_PRODUCTION_MARTE = "sa-east-1"
+
 
 pipeline{
     agent any
@@ -14,11 +16,11 @@ pipeline{
                 script{
                     withCredentials(
                       [
-                        string(credentialsId: TERRAFORM_AWS_ACCESS_KEY_ID, variable: 'aws_access_key_id_unveil'),
-                        string(credentialsId: TERRAFORM_AWS_SECRET_ACCESS_KEY, variable: 'aws_secret_access_key_unveil'),
+                        string(credentialsId: RITCHIE_AWS_ACCESS_KEY_ID, variable: 'aws_access_key_id_unveil'),
+                        string(credentialsId: RITCHIE_AWS_SECRET_ACCESS_KEY, variable: 'aws_secret_access_key_unveil'),
                       ]) {
                         try{
-                            sh "AWS_ACCESS_KEY_ID=${aws_access_key_id_unveil} AWS_SECRET_ACCESS_KEY=${aws_secret_access_key_unveil} echo Here"
+                            sh "AWS_ACCESS_KEY_ID=${aws_access_key_id_unveil} AWS_SECRET_ACCESS_KEY=${aws_secret_access_key_unveil} AWS_DEFAULT_REGION=${RITCHIE_AWS_REGION_PRODUCTION_MARTE} echo Here"
                         } catch (Error error){
                             echo "Error while building or pushing to s3"
                         }
