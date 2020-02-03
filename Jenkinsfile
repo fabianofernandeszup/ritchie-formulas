@@ -13,10 +13,6 @@ pipeline{
     stages
     {
       stage("Building formulas and sending them to s3"){
-            environment {
-                TERRAFORM_AWS_ACCESS_KEY_ID= "${TERRAFORM_AWS_ACCESS_KEY_ID}"
-                TERRAFORM_AWS_SECRET_ACCESS_KEY= "${TERRAFORM_AWS_SECRET_ACCESS_KEY}"
-            }
             steps {
                 script{
 

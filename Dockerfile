@@ -9,6 +9,7 @@ RUN apk update && apk add \
     py-pip \
     jq \
     git \
+    zip \
     && pip install --no-cache-dir awscli==1.16.310 \
     && apk del py-pip \
     && rm -rf /var/cache/apk/* /root/.cache/pip/* /usr/lib/python2.7/site-packages/awscli/examples
