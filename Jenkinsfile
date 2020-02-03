@@ -16,7 +16,7 @@ pipeline{
                       ]) {
                         try{
                             sh "AWS_ACCESS_KEY_ID=${aws_access_key_id_unveil} AWS_SECRET_ACCESS_KEY=${aws_secret_access_key_unveil} echo Here"
-                        } catch {
+                        } catch (Error error){
                             echo "Error while building or pushing to s3"
                         }
                       }
