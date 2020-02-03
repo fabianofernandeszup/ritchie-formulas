@@ -2,8 +2,6 @@ def RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_PRODUCTION_MARTE"]
 def RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION_MARTE"]
 def RITCHIE_AWS_REGION_PRODUCTION_MARTE = "sa-east-1"
 
-checkout scm
-
 pipeline{
     agent any
     stages
@@ -15,6 +13,9 @@ pipeline{
             }
             steps {
                 script{
+
+                    checkout scm
+
                     withCredentials(
                       [
                         string(credentialsId: RITCHIE_AWS_ACCESS_KEY_ID, variable: 'aws_access_key_id_unveil'),
