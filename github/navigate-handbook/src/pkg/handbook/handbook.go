@@ -12,8 +12,7 @@ import (
 )
 
 const (
-	zupGitListUrl = "https://api.github.com/repos/zupit/{{REPOSITORY}}/contents/"
-	//https://api.github.com/repos/erneliojuniorzup/teste-git-api/contents/
+	zupGitListUrl = "https://api.github.com/repos/ZupIT/{{REPOSITORY}}/contents/"
 )
 
 type Archive struct {
@@ -43,7 +42,6 @@ func (in Inputs)navigateGit(archives []Archive,strSelect ,url  string ){
 	x := verifyTypeFile(archives,strSelect)
 
 	if x {
-		//Chamar url para mostrar contents
 		url = fmt.Sprint(url,"/"+strSelect)
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
