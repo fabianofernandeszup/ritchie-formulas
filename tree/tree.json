@@ -1,23 +1,9 @@
 {
   "commands": [
     {
-      "usage": "aws",
-      "help": "Apply Aws objects",
-      "parent": "root"
-    },
-    {
       "usage": "apply",
-      "help": "Apply Aws objects",
-      "parent": "root_aws"
-    },
-    {
-      "usage": "terraform",
-      "help": "Apply Aws terraform objects",
-      "formula": {
-        "path": "aws/terraform",
-        "bin": "terraform-cli-${so}"
-      },
-      "parent": "root_aws_apply"
+      "help": "Apply objects from some type",
+      "parent": "root"
     },
     {
       "usage": "create",
@@ -25,19 +11,14 @@
       "parent": "root"
     },
     {
-      "usage": "user",
-      "help": "Create user",
-      "parent": "root_create"
-    },
-    {
       "usage": "delete",
       "help": "Delete objects",
       "parent": "root"
     },
     {
-      "usage": "user",
-      "help": "Delete user",
-      "parent": "root_delete"
+      "usage": "generate",
+      "help": "Generate objects from some type",
+      "parent": "root"
     },
     {
       "usage": "help",
@@ -60,24 +41,9 @@
       "parent": "root"
     },
     {
-      "usage": "credential",
-      "help": "Set provider credential",
-      "parent": "root_set"
-    },
-    {
       "usage": "completion",
       "help": "Generate auto-completion",
       "parent": "root"
-    },
-    {
-      "usage": "zsh",
-      "help": "Generates auto-completion for zsh",
-      "parent": "root_completion"
-    },
-    {
-      "usage": "bash",
-      "help": "Generates auto-completion for bash",
-      "parent": "root_completion"
     },
     {
       "usage": "darwin",
@@ -94,80 +60,44 @@
       "parent": "root_darwin"
     },
     {
+      "usage": "user",
+      "help": "Create user",
+      "parent": "root_create"
+    },
+    {
+      "usage": "user",
+      "help": "Delete user",
+      "parent": "root_delete"
+    },
+    {
+      "usage": "zsh",
+      "help": "Generates auto-completion for zsh",
+      "parent": "root_completion"
+    },
+    {
+      "usage": "bash",
+      "help": "Generates auto-completion for bash",
+      "parent": "root_completion"
+    },
+    {
       "usage": "scaffold",
-      "help": "Manipulate scaffold objects",
-      "parent": "root"
-    },
-    {
-      "usage": "generate",
       "help": "Generates a scaffold by some template",
-      "parent": "root_scaffold"
-    },
-    {
-      "usage": "coffee",
-      "help": "Generates a project by coffee template",
-      "formula": {
-        "path": "scaffold/coffee",
-        "bin": "coffee-${so}"
-      },
-      "parent": "root_scaffold_generate"
-    },
-    {
-      "usage": "spring-iti",
-      "help": "Generates a project for kotlin/java",
-      "formula": {
-        "path": "scaffold/spring-iti",
-        "bin": "spring-iti-${so}"
-      },
-      "parent": "root_scaffold_generate"
+      "parent": "root_generate"
     },
     {
       "usage": "github",
-      "help": "Manipulate GitHub objects",
-      "parent": "root"
-    },
-    {
-      "usage": "generate",
-      "help": "Generates a scaffold by some template",
-      "parent": "root_github"
-    },
-    {
-      "usage": "zup-webhook",
-      "help": "Apply Zup WebHook CI and Zup Bot",
-      "formula": {
-        "path": "github/zup-webhook",
-        "bin": "zup-webhook-${so}"
-      },
-      "parent": "root_github_generate"
+      "help": "Apply GitHub objects",
+      "parent": "root_generate"
     },
     {
       "usage": "jenkins",
-      "help": "Manipulate Jenkins objects",
-      "parent": "root"
-    },
-    {
-      "usage": "generate",
       "help": "Apply Jenkins objects",
-      "parent": "root_jenkins"
-    },
-    {
-      "usage": "job",
-      "help": "Apply Jenkins Job CI",
-      "formula": {
-        "path": "jenkins/jobs",
-        "bin": "jobs-${so}"
-      },
-      "parent": "root_jenkins_generate"
+      "parent": "root_generate"
     },
     {
       "usage": "vivo",
-      "help": "Manipulate Vivo objects",
-      "parent": "root"
-    },
-    {
-      "usage": "generate",
       "help": "Apply Vivo objects",
-      "parent": "root_vivo"
+      "parent": "root_generate"
     },
     {
       "usage": "deploy",
@@ -176,7 +106,62 @@
         "path": "vivo/deploy",
         "bin": "vivo-deploy-${so}"
       },
-      "parent": "root_vivo_generate"
+      "parent": "root_generate_vivo"
+    },
+    {
+      "usage": "job",
+      "help": "Apply Jenkins Job CI",
+      "formula": {
+        "path": "jenkins/jobs",
+        "bin": "jobs-${so}"
+      },
+      "parent": "root_generate_jenkins"
+    },
+    {
+      "usage": "zup-webhook",
+      "help": "Apply Zup WebHook CI and Zup Bot",
+      "formula": {
+        "path": "github/zup-webhook",
+        "bin": "zup-webhook-${so}"
+      },
+      "parent": "root_generate_github"
+    },
+    {
+      "usage": "aws",
+      "help": "Apply Aws objects",
+      "parent": "root_apply"
+    },
+    {
+      "usage": "terraform",
+      "help": "Apply Aws terraform objects",
+      "formula": {
+        "path": "aws/terraform",
+        "bin": "terraform-cli-${so}"
+      },
+      "parent": "root_apply_aws"
+    },
+    {
+      "usage": "credential",
+      "help": "Set provider credential",
+      "parent": "root_set"
+    },
+    {
+      "usage": "coffee",
+      "help": "Generates a project by coffee template",
+      "formula": {
+        "path": "scaffold/coffee",
+        "bin": "coffee-${so}"
+      },
+      "parent": "root_generate_scaffold"
+    },
+    {
+      "usage": "spring-iti",
+      "help": "Generates a project for kotlin/java",
+      "formula": {
+        "path": "scaffold/spring-iti",
+        "bin": "spring-iti-${so}"
+      },
+      "parent": "root_generate_scaffold"
     }
   ],
   "version": "1.0.0"
