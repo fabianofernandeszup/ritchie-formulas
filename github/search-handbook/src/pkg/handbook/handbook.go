@@ -3,7 +3,6 @@ package handbook
 import (
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"handbook/pkg/prompt"
 	"io/ioutil"
 	"log"
@@ -12,7 +11,8 @@ import (
 )
 
 const (
-	zupGitListUrl = "https://api.github.com/repos/ZupIT/{{REPOSITORY}}/contents/"
+	zupGitListUrl = "https://api.github.com/search/code?q={{WORD}}+in:file+repo:zupit/{{REPOSITORY}}"
+	//Search code = https://api.github.com/search/code?q=main+in:file+repo:zupit/ritchie-cli
 )
 
 type Archive struct {
@@ -28,46 +28,18 @@ type Inputs struct {
 }
 
 func (in Inputs) Run() {
-	log.Println("Handbook Starter ...")
+	log.Println("Handbook Search Code Starter ...")
 
 	repository := readRepository()
+	word := readWord()
+
 	url := strings.ReplaceAll(zupGitListUrl, "{{REPOSITORY}}", repository)
-	archives := in.scanRepository(url)
+	url = strings.ReplaceAll(url,"{{WORD}}",word)
 
-	strSelect, _ := prompt.List("Escolha", archivesToString(archives))
-	in.navigateGit(archives,strSelect,url)
-}
+	log.Println(url)
 
-func (in Inputs)navigateGit(archives []Archive,strSelect ,url  string ){
-	x := verifyTypeFile(archives,strSelect)
-
-	if x {
-		url = fmt.Sprint(url,"/"+strSelect)
-		req, err := http.NewRequest("GET", url, nil)
-		if err != nil {
-			log.Fatal("Error to git Repository Request: ", err)
-		}
-		req.SetBasicAuth(in.GitUser, in.GitToken)
-		resp, err := http.DefaultClient.Do(req)
-		if err != nil {
-			log.Fatal("Error process git Repository: ", err)
-		}
-		defer resp.Body.Close()
-		bodyBytes, err := ioutil.ReadAll(resp.Body)
-		var a Archive
-		err = json.Unmarshal(bodyBytes, &a)
-		if err != nil {
-		log.Fatal("Error proccess convert json to struct:", err)
-		}
-
-		log.Println(decodeContent(a.Content))
-		return
-	}
-	url = fmt.Sprint(url,"/"+strSelect)
-
-	archives = in.scanRepository(url)
-	strSelect, _ = prompt.List("Escolha", archivesToString(archives))
-	in.navigateGit(archives, strSelect, url)
+	archives := in.searchRepository(url)
+	log.Println(archives)
 }
 
 func decodeContent(str string) string {
@@ -96,7 +68,15 @@ func readRepository() string {
 	return repository
 }
 
-func (in Inputs) scanRepository(url string) []Archive {
+func readWord() string {
+	repository, err := prompt.String("Type word of search: ", false)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return repository
+}
+
+func (in Inputs) searchRepository(url string) []Archive {
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

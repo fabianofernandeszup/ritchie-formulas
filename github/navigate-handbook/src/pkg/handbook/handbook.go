@@ -22,13 +22,12 @@ type Archive struct {
 }
 
 type Inputs struct {
-	RepositoryName string
 	GitUser        string
 	GitToken       string
 }
 
 func (in Inputs) Run() {
-	log.Println("Handbook Starter ...")
+	log.Println("Handbook Navigate Starter ...")
 
 	repository := readRepository()
 	url := strings.ReplaceAll(zupGitListUrl, "{{REPOSITORY}}", repository)
