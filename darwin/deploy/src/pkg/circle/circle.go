@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-const circleUrl  = "https://darwin-api.continuousplatform.com/moove/circles?page={page}&size={size}"
+const circleUrl  = "https://darwin-api.continuousplatform.com/moove/circles?page={page}&size={size}&name={name}"
 
 type PageModule struct {
 	Content []Circle `json:"content"`
@@ -29,27 +29,24 @@ type Circle struct {
 func SearchCircles(token, partName string) []Circle {
 	initialPage := 0
 	size := 100
-	page := Search(token, initialPage, size)
+	page := Search(token, initialPage, size, partName)
 	circles := page.Content
 	for page.Last != true {
 		initialPage++
-		page = Search(token, initialPage, size)
+		page = Search(token, initialPage, size, partName)
 		circles = append(circles, page.Content...)
 	}
 	var circlesName []Circle
 	for _, circle := range circles {
-		partName = strings.ToLower(partName)
-		circleName := strings.ToLower(circle.Name)
-		if strings.Contains(circleName, partName) {
-			circlesName = append(circlesName, circle)
-		}
+		circlesName = append(circlesName, circle)
 	}
 	return circlesName
 }
 
-func Search(token string, page, size int) PageModule {
+func Search(token string, page, size int, partName string) PageModule {
 	url := strings.ReplaceAll(circleUrl, "{page}", strconv.Itoa(page))
 	url = strings.ReplaceAll(url, "{size}", strconv.Itoa(size))
+	url = strings.ReplaceAll(url, "{name}", partName)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal(err)
