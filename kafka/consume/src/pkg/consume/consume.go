@@ -16,7 +16,10 @@ import (
 	"consume/pkg/kafkautil"
 )
 
-const ritchieGroupFormat = "ritchie_consumer_group_%s"
+const (
+	ritchieGroupFormat = "ritchie_consumer_group_%s"
+	messageFormat      = "Consumed message from topic (%s) at %s: \n Headers: %s \n Key: %s \n Message: %s \n"
+)
 
 type Inputs struct {
 	Urls          string
@@ -97,10 +100,21 @@ func (consumer *Consumer) Cleanup(sarama.ConsumerGroupSession) error {
 
 // ConsumeClaim must start a consumer loop of ConsumerGroupClaim's Messages().
 func (consumer *Consumer) ConsumeClaim(session sarama.ConsumerGroupSession, claim sarama.ConsumerGroupClaim) error {
-	for message := range claim.Messages() {
-		fmt.Println(fmt.Sprintf("Consumed message from topic (%s) at %s: \n %s \n", message.Topic, message.Timestamp.Format("2006-01-02T15:04:05.0000"), string(message.Value)))
-		session.MarkMessage(message, "")
+	for m := range claim.Messages() {
+		hh := processHeaders(m.Headers)
+		fmt.Println(fmt.Sprintf(messageFormat, m.Topic, m.Timestamp.Format("2006-01-02T15:04:05.0000"), hh, m.Key, m.Value))
+		session.MarkMessage(m, "")
 	}
 
 	return nil
+}
+
+func processHeaders(headers []*sarama.RecordHeader) map[string]interface{} {
+	hh := make(map[string]interface{})
+
+	for _, v := range headers {
+		hh[string(v.Key)] = string(v.Value)
+	}
+
+	return hh
 }
