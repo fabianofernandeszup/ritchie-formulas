@@ -80,11 +80,6 @@
       "parent": "root_completion"
     },
     {
-      "usage": "generate",
-      "help": "Generate objects from some type",
-      "parent": "root"
-    },
-    {
       "usage": "darwin",
       "help": "Darwin commands",
       "parent": "root"
