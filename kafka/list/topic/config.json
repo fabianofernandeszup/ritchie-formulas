@@ -1,0 +1,10 @@
+{
+  "description": "List topic names",
+  "inputs" : [
+    {
+      "name" : "urls",
+      "type" : "text",
+      "label" : "Kafka urls: "
+    }
+  ]
+}

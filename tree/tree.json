@@ -94,6 +94,77 @@
       "parent": "root_darwin"
     },
     {
+      "usage": "kafka",
+      "help": "Kafka commands",
+      "parent": "root"
+    },
+    {
+      "usage": "list",
+      "help": "Kafka list commands",
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "create",
+      "help": "Kafka create commands",
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "topic",
+      "help": "List kafka topics",
+      "formula": {
+        "path": "kafka/list/topic",
+        "bin": "list-topic-${so}"
+      },
+      "parent": "root_kafka_list"
+    },
+    {
+      "usage": "topic",
+      "help": "Create kafka topics",
+      "formula": {
+        "path": "kafka/create/topic",
+        "bin": "create-topic-${so}"
+      },
+      "parent": "root_kafka_create"
+    },
+    {
+      "usage": "consume",
+      "help": "Consume kafka messages",
+      "formula": {
+        "path": "kafka/consume",
+        "bin": "consume-${so}"
+      },
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "produce",
+      "help": "Produce kafka messages",
+      "formula": {
+        "path": "kafka/produce",
+        "bin": "produce-${so}"
+      },
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "user",
+      "help": "Create user",
+      "parent": "root_create"
+    },
+    {
+      "usage": "user",
+      "help": "Delete user",
+      "parent": "root_delete"
+    },
+    {
+      "usage": "zsh",
+      "help": "Generates auto-completion for zsh",
+      "parent": "root_completion"
+    },
+    {
+      "usage": "bash",
+      "help": "Generates auto-completion for bash",
+      "parent": "root_completion"
+    },
+    {
       "usage": "scaffold",
       "help": "Manipulate scaffold objects",
       "parent": "root"
