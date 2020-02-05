@@ -3,6 +3,8 @@ package handbook
 import (
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
+	"github.com/gookit/color"
 	"handbook/pkg/prompt"
 	"io/ioutil"
 	"log"
@@ -11,14 +13,19 @@ import (
 )
 
 const (
-	zupGitListUrl = "https://api.github.com/search/code?q={{WORD}}+in:file+repo:zupit/{{REPOSITORY}}"
-	//Search code = https://api.github.com/search/code?q=main+in:file+repo:zupit/ritchie-cli
+	zupGitSearchUrl = "https://api.github.com/search/code?q={{WORD}}+in:file+repo:zupit/{{REPOSITORY}}"
 )
 
 type Archive struct {
 	Name string `json:"name"`
-	Type string `json:"type"`
+	Url string `json:"url"`
+	Path string `json:"path"`
 	Content string `json:"content"`
+}
+
+type ResultSearch struct{
+	TotalCount int `json:"total_count"`
+	Items []Archive    `json:"items"`
 }
 
 type Inputs struct {
@@ -29,17 +36,57 @@ type Inputs struct {
 
 func (in Inputs) Run() {
 	log.Println("Handbook Search Code Starter ...")
-
 	repository := readRepository()
 	word := readWord()
 
-	url := strings.ReplaceAll(zupGitListUrl, "{{REPOSITORY}}", repository)
+	url := strings.ReplaceAll(zupGitSearchUrl, "{{REPOSITORY}}", repository)
 	url = strings.ReplaceAll(url,"{{WORD}}",word)
 
-	log.Println(url)
+	resultSearch := in.searchRepository(url)
+	if resultSearch.TotalCount <= 0  {
+		log.Fatal("Not Found!")
+		return
+	}
+	str := fmt.Sprintf("Found %d in file(s):", resultSearch.TotalCount)
 
-	archives := in.searchRepository(url)
-	log.Println(archives)
+	strSelect, _ := prompt.List(str, resultSearchToString(resultSearch))
+	in.showContent(strSelect, word, resultSearch)
+
+}
+
+func (in Inputs)showContent(strSelect, word string, resultSearch ResultSearch) {
+	a := stringToArchive(strSelect, resultSearch)
+
+	req, err := http.NewRequest("GET", a.Url, nil)
+	if err != nil {
+		log.Fatal("Error to scan Repository Request: ", err)
+	}
+	req.SetBasicAuth(in.GitUser, in.GitToken)
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		log.Fatal("Error process scan Repository: ", err)
+	}
+	defer resp.Body.Close()
+
+	var ar Archive
+	bodyBytes, _ := ioutil.ReadAll(resp.Body)
+
+	err = json.Unmarshal(bodyBytes, &ar)
+	if err != nil {
+		log.Fatal("Error proccess convert json to struct:", err)
+	}
+	c := decodeContent(ar.Content)
+	color.Success.Println(c)
+}
+
+func stringToArchive(strSelect string, resultSearch ResultSearch) Archive {
+	for _,r := range resultSearch.Items{
+		if r.Path == strSelect {
+			return r
+		}
+	}
+	log.Fatal("Error, str not found in resultSearch")
+	return Archive{}
 }
 
 func decodeContent(str string) string {
@@ -51,13 +98,37 @@ func decodeContent(str string) string {
 	return string(data)
 }
 
-func archivesToString(archives []Archive) []string {
+func resultSearchToString(rs ResultSearch) []string {
 	var str []string
 
-	for _, a := range archives {
-		str = append(str, a.Name)
-	}
+		for _,x := range rs.Items {
+			str = append(str, x.Path )
+		}
+
 	return str
+}
+
+func (in Inputs) searchRepository(url string) ResultSearch {
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		log.Fatal("Error to scan Repository Request: ", err)
+	}
+	req.SetBasicAuth(in.GitUser, in.GitToken)
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		log.Fatal("Error process scan Repository: ", err)
+	}
+	defer resp.Body.Close()
+
+	var rs ResultSearch
+	bodyBytes, _ := ioutil.ReadAll(resp.Body)
+
+	err = json.Unmarshal(bodyBytes, &rs)
+	if err != nil {
+		log.Fatal("Error proccess convert json to struct:", err)
+	}
+	return rs
 }
 
 func readRepository() string {
@@ -74,43 +145,4 @@ func readWord() string {
 		log.Fatal(err)
 	}
 	return repository
-}
-
-func (in Inputs) searchRepository(url string) []Archive {
-
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		log.Fatal("Error to scan Repository Request: ", err)
-	}
-	req.SetBasicAuth(in.GitUser, in.GitToken)
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		log.Fatal("Error process scan Repository: ", err)
-	}
-	defer resp.Body.Close()
-
-	var archives []Archive
-	bodyBytes, _ := ioutil.ReadAll(resp.Body)
-	err = json.Unmarshal(bodyBytes, &archives)
-	if err != nil {
-		log.Fatal("Error proccess convert json to struct:", err)
-	}
-	return archives
-}
-
-func verifyTypeFile(archives []Archive, str string) bool{
-
-	for _,a := range archives  {
-		if a.Name == str {
-			switch a.Type {
-			case "file":
-				return true
-			case "dir":
-				return false
-			default:
-				log.Fatal("Type GitHub is not valid.")
-			}
-		}
-	}
-	return false
 }

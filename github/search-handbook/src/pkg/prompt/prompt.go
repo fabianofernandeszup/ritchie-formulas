@@ -3,7 +3,6 @@ package prompt
 import (
 	"errors"
 	"strings"
-
 	"github.com/manifoldco/promptui"
 )
 
