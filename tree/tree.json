@@ -203,6 +203,16 @@
       "parent": "root_github"
     },
     {
+      "usage": "navigate",
+      "help": "Navigate a github by some handbook.",
+      "parent": "root_github"
+    },
+    {
+      "usage": "search",
+      "help": "Search a github by some handbook.",
+      "parent": "root_github"
+    },
+    {
       "usage": "zup-webhook",
       "help": "Apply Zup WebHook CI and Zup Bot",
       "formula": {
@@ -210,6 +220,24 @@
         "bin": "zup-webhook-${so}"
       },
       "parent": "root_github_generate"
+    },
+    {
+      "usage": "handbook",
+      "help": "Navigate in your handbook",
+      "formula": {
+        "path": "github/navigate-handbook",
+        "bin": "navigate-handbook-${so}"
+      },
+      "parent": "root_github_navigate"
+    },
+    {
+      "usage": "handbook",
+      "help": "Search in your handbook",
+      "formula": {
+        "path": "github/search-handbook",
+        "bin": "search-handbook-${so}"
+      },
+      "parent": "root_github_search"
     },
     {
       "usage": "jenkins",
