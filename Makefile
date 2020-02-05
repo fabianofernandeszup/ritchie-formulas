@@ -6,7 +6,8 @@ JENKINS_JOB=jenkins/jobs
 SC_COFFEE=scaffold/coffee
 SC_SPRING=scaffold/spring-iti
 VIVO=vivo/deploy
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(VIVO)
+DOCKER=docker/compose
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(VIVO) $(DOCKER)
 PWD_INITIAL=$(shell pwd)
 
 push-s3:
@@ -21,3 +22,4 @@ push-s3:
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
+	for formula in $(FORMULAS); do mkdir -p formulas/$$formula && cp $$formula/config.json formulas/$$formula && cp -rf $$formula/bin formulas/$$formula; done
