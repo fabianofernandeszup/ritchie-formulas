@@ -1,9 +1,23 @@
 {
   "commands": [
     {
-      "usage": "apply",
-      "help": "Apply objects from some type",
+      "usage": "aws",
+      "help": "Apply Aws objects",
       "parent": "root"
+    },
+    {
+      "usage": "apply",
+      "help": "Apply Aws objects",
+      "parent": "root_aws"
+    },
+    {
+      "usage": "terraform",
+      "help": "Apply Aws terraform objects",
+      "formula": {
+        "path": "aws/terraform",
+        "bin": "terraform-cli-${so}"
+      },
+      "parent": "root_aws_apply"
     },
     {
       "usage": "create",
@@ -11,14 +25,19 @@
       "parent": "root"
     },
     {
+      "usage": "user",
+      "help": "Create user",
+      "parent": "root_create"
+    },
+    {
       "usage": "delete",
       "help": "Delete objects",
       "parent": "root"
     },
     {
-      "usage": "generate",
-      "help": "Generate objects from some type",
-      "parent": "root"
+      "usage": "user",
+      "help": "Delete user",
+      "parent": "root_delete"
     },
     {
       "usage": "help",
@@ -41,9 +60,24 @@
       "parent": "root"
     },
     {
+      "usage": "credential",
+      "help": "Set provider credential",
+      "parent": "root_set"
+    },
+    {
       "usage": "completion",
       "help": "Generate auto-completion",
       "parent": "root"
+    },
+    {
+      "usage": "zsh",
+      "help": "Generates auto-completion for zsh",
+      "parent": "root_completion"
+    },
+    {
+      "usage": "bash",
+      "help": "Generates auto-completion for bash",
+      "parent": "root_completion"
     },
     {
       "usage": "darwin",
@@ -58,6 +92,57 @@
         "bin": "darwin-deploy-${so}"
       },
       "parent": "root_darwin"
+    },
+    {
+      "usage": "kafka",
+      "help": "Kafka commands",
+      "parent": "root"
+    },
+    {
+      "usage": "list",
+      "help": "Kafka list commands",
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "create",
+      "help": "Kafka create commands",
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "topic",
+      "help": "List kafka topics",
+      "formula": {
+        "path": "kafka/list/topic",
+        "bin": "list-topic-${so}"
+      },
+      "parent": "root_kafka_list"
+    },
+    {
+      "usage": "topic",
+      "help": "Create kafka topics",
+      "formula": {
+        "path": "kafka/create/topic",
+        "bin": "create-topic-${so}"
+      },
+      "parent": "root_kafka_create"
+    },
+    {
+      "usage": "consume",
+      "help": "Consume kafka messages",
+      "formula": {
+        "path": "kafka/consume",
+        "bin": "consume-${so}"
+      },
+      "parent": "root_kafka"
+    },
+    {
+      "usage": "produce",
+      "help": "Produce kafka messages",
+      "formula": {
+        "path": "kafka/produce",
+        "bin": "produce-${so}"
+      },
+      "parent": "root_kafka"
     },
     {
       "usage": "user",
@@ -81,69 +166,13 @@
     },
     {
       "usage": "scaffold",
+      "help": "Manipulate scaffold objects",
+      "parent": "root"
+    },
+    {
+      "usage": "generate",
       "help": "Generates a scaffold by some template",
-      "parent": "root_generate"
-    },
-    {
-      "usage": "github",
-      "help": "Apply GitHub objects",
-      "parent": "root_generate"
-    },
-    {
-      "usage": "jenkins",
-      "help": "Apply Jenkins objects",
-      "parent": "root_generate"
-    },
-    {
-      "usage": "vivo",
-      "help": "Apply Vivo objects",
-      "parent": "root_generate"
-    },
-    {
-      "usage": "deploy",
-      "help": "Deploy Vivo in PRD",
-      "formula": {
-        "path": "vivo/deploy",
-        "bin": "vivo-deploy-${so}"
-      },
-      "parent": "root_generate_vivo"
-    },
-    {
-      "usage": "job",
-      "help": "Apply Jenkins Job CI",
-      "formula": {
-        "path": "jenkins/jobs",
-        "bin": "jobs-${so}"
-      },
-      "parent": "root_generate_jenkins"
-    },
-    {
-      "usage": "zup-webhook",
-      "help": "Apply Zup WebHook CI and Zup Bot",
-      "formula": {
-        "path": "github/zup-webhook",
-        "bin": "zup-webhook-${so}"
-      },
-      "parent": "root_generate_github"
-    },
-    {
-      "usage": "aws",
-      "help": "Apply Aws objects",
-      "parent": "root_apply"
-    },
-    {
-      "usage": "terraform",
-      "help": "Apply Aws terraform objects",
-      "formula": {
-        "path": "aws/terraform",
-        "bin": "terraform-cli-${so}"
-      },
-      "parent": "root_apply_aws"
-    },
-    {
-      "usage": "credential",
-      "help": "Set provider credential",
-      "parent": "root_set"
+      "parent": "root_scaffold"
     },
     {
       "usage": "coffee",
@@ -152,7 +181,7 @@
         "path": "scaffold/coffee",
         "bin": "coffee-${so}"
       },
-      "parent": "root_generate_scaffold"
+      "parent": "root_scaffold_generate"
     },
     {
       "usage": "spring-iti",
@@ -161,7 +190,64 @@
         "path": "scaffold/spring-iti",
         "bin": "spring-iti-${so}"
       },
-      "parent": "root_generate_scaffold"
+      "parent": "root_scaffold_generate"
+    },
+    {
+      "usage": "github",
+      "help": "Manipulate GitHub objects",
+      "parent": "root"
+    },
+    {
+      "usage": "generate",
+      "help": "Generates a scaffold by some template",
+      "parent": "root_github"
+    },
+    {
+      "usage": "zup-webhook",
+      "help": "Apply Zup WebHook CI and Zup Bot",
+      "formula": {
+        "path": "github/zup-webhook",
+        "bin": "zup-webhook-${so}"
+      },
+      "parent": "root_github_generate"
+    },
+    {
+      "usage": "jenkins",
+      "help": "Manipulate Jenkins objects",
+      "parent": "root"
+    },
+    {
+      "usage": "generate",
+      "help": "Apply Jenkins objects",
+      "parent": "root_jenkins"
+    },
+    {
+      "usage": "job",
+      "help": "Apply Jenkins Job CI",
+      "formula": {
+        "path": "jenkins/jobs",
+        "bin": "jobs-${so}"
+      },
+      "parent": "root_jenkins_generate"
+    },
+    {
+      "usage": "vivo",
+      "help": "Manipulate Vivo objects",
+      "parent": "root"
+    },
+    {
+      "usage": "generate",
+      "help": "Apply Vivo objects",
+      "parent": "root_vivo"
+    },
+    {
+      "usage": "deploy",
+      "help": "Deploy Vivo in PRD",
+      "formula": {
+        "path": "vivo/deploy",
+        "bin": "vivo-deploy-${so}"
+      },
+      "parent": "root_vivo_generate"
     }
   ],
   "version": "1.0.0"
