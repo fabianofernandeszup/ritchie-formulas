@@ -11,6 +11,9 @@
 /test/tests.*
 /test/coverage.*
 /go.sum
+**/go.sum
+/pkg/*
+/formulas/*
 
 # Test binary, built with `go test -c`
 *.test
