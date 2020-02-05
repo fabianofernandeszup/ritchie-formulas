@@ -4,7 +4,12 @@
     {
       "name" : "name",
       "type" : "text",
-      "label" : "Type your name: "
+      "label" : "Type your name: ",
+      "cache" : {
+        "active": true,
+        "qtd" : 6,
+        "newLabel" : "Type new value. "
+      }
     },
     {
       "name" : "coffee_type",
