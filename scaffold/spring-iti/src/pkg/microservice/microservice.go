@@ -10,7 +10,10 @@ import (
 	"strings"
 )
 
-const genURL = "https://iti-initializr.itiaws.dev/starter.zip"
+const (
+	genURL = "https://iti-initializr.itiaws.dev/starter.zip"
+	jenkinsFile = "Jenkinsfile"
+)
 
 type Inputs struct {
 	Packaging string
@@ -35,8 +38,18 @@ func Run(inputs Inputs) {
 	if err != nil {
 		log.Fatal("Failed to Unzip file", err)
 	}
+	err = inputs.changePermissionJenkinsFile()
+	if err != nil {
+		log.Fatal("Failed to change permission to Jenkinsfile", err)
+	}
 	log.Println("Finished scaffold generation")
 }
+
+func (i Inputs) changePermissionJenkinsFile() error {
+	file := fmt.Sprintf("%s/%s", i.Name, jenkinsFile)
+	return fileutil.ChangePermission(file, 0755)
+}
+
 
 func unzipFile(filename string) error {
 	log.Println("Unzip files...")

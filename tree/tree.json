@@ -207,6 +207,16 @@
       "parent": "root_github"
     },
     {
+      "usage": "navigate",
+      "help": "Navigate a github by some handbook.",
+      "parent": "root_github"
+    },
+    {
+      "usage": "search",
+      "help": "Search a github by some handbook.",
+      "parent": "root_github"
+    },
+    {
       "usage": "zup-webhook",
       "help": "Apply Zup WebHook CI and Zup Bot",
       "formula": {
@@ -214,6 +224,24 @@
         "bin": "zup-webhook-${so}"
       },
       "parent": "root_github_generate"
+    },
+    {
+      "usage": "handbook",
+      "help": "Navigate in your handbook",
+      "formula": {
+        "path": "github/navigate-handbook",
+        "bin": "navigate-handbook-${so}"
+      },
+      "parent": "root_github_navigate"
+    },
+    {
+      "usage": "handbook",
+      "help": "Search in your handbook",
+      "formula": {
+        "path": "github/search-handbook",
+        "bin": "search-handbook-${so}"
+      },
+      "parent": "root_github_search"
     },
     {
       "usage": "jenkins",
@@ -252,6 +280,25 @@
         "bin": "vivo-deploy-${so}"
       },
       "parent": "root_vivo_generate"
+    },
+    {
+      "usage": "docker",
+      "help": "Manipulate Docker objects",
+      "parent": "root"
+    },
+    {
+      "usage": "generate",
+      "help": "Generate Docker objects",
+      "parent": "root_docker"
+    },
+    {
+      "usage": "compose",
+      "help": "Generate docker-compose.yml in current directory",
+      "formula": {
+        "path": "docker/compose",
+        "bin": "docker-generate-compose-${so}"
+      },
+      "parent": "root_docker_generate"
     }
   ],
   "version": "1.0.0"

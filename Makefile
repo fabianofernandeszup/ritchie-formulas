@@ -2,13 +2,16 @@
 TERRAFORM=aws/terraform
 DARWIN=darwin/deploy
 WEBHOOK=github/zup-webhook
+NAVIGATE_HANDBOOK=github/navigate-handbook
+SEARCH_HANDBOOK=github/search-handbook
 JENKINS_JOB=jenkins/jobs
 SC_COFFEE=scaffold/coffee
 SC_SPRING=scaffold/spring-iti
 KAFKA=kafka
 VIVO=vivo/deploy
+DOCKER=docker/compose
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(KAFKA) $(VIVO) $(DOCKER) $(NAVIGATE_HANDBOOK) $(SEARCH_HANDBOOK)
 
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(KAFKA) $(VIVO)
 PWD_INITIAL=$(shell pwd)
 
 push-s3:
