@@ -88,6 +88,10 @@ func Exists(filePath string) bool {
 	return true
 }
 
+func ChangePermission(filePath string, perm os.FileMode) error {
+	return os.Chmod(filePath, perm)
+}
+
 // CreateIfNotExists creates dir if not exists
 func CreateIfNotExists(dir string, perm os.FileMode) error {
 	if Exists(dir) {
