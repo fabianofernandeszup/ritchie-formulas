@@ -19,8 +19,8 @@ push-s3:
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
 	./copy-bin-configs.sh "$(FORMULAS)"
 	zip -r formulas.zip formulas
-	aws s3 cp . s3://ritchie-cli-bucket152849730126474/formulas --exclude "*" --include "formulas.zip"
 	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
+	aws s3 cp . s3://ritchie-cli-bucket152849730126474/formulas --exclude "*" --include "formulas.zip"
 	rm -rf formulas
 	rm -rf formulas.zip
 
