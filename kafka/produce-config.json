@@ -1,10 +1,16 @@
 {
+  "command": "produce",
   "description": "Produce messages for kafka",
   "inputs": [
     {
       "name": "urls",
       "type": "text",
-      "label": "Kafka urls: "
+      "label": "Kafka urls: ",
+      "cache" : {
+        "active": true,
+        "qtd" : 5,
+        "newLabel" : "Type new urls. "
+      }
     },
     {
       "name": "topic",
