@@ -13,7 +13,7 @@ import (
 	"github.com/Shopify/sarama"
 	"github.com/hashicorp/go-uuid"
 
-	"consume/pkg/kafkautil"
+	"github.com/ZupIT/ritchie-formulas/kafka/src/pkg/kafkautil"
 )
 
 const (
@@ -27,7 +27,11 @@ type Inputs struct {
 	FromBeginning bool
 }
 
-func Run(i Inputs) {
+func NewInputs(urls, topic string, fromBeginning bool) *Inputs {
+	return &Inputs{Urls: urls, Topic: topic, FromBeginning: fromBeginning}
+}
+
+func (i *Inputs) Run() {
 	c := sarama.NewConfig()
 	c.Version = kafkautil.PromptVersion()
 	c.Consumer.Return.Errors = true
