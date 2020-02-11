@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 FORMULAS="$1"
 
