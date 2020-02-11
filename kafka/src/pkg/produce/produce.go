@@ -9,17 +9,21 @@ import (
 
 	"github.com/Shopify/sarama"
 
-	"produce/pkg/kafkautil"
+	"github.com/ZupIT/ritchie-formulas/kafka/src/pkg/kafkautil"
 )
+
+const delimiter = '\n'
 
 type Inputs struct {
 	Urls  string
 	Topic string
 }
 
-const delimiter = '\n'
+func NewInputs(urls, topic string) *Inputs {
+	return &Inputs{Urls: urls, Topic: topic}
+}
 
-func Run(i Inputs) {
+func (i *Inputs) Run() {
 	c := sarama.NewConfig()
 	c.Version = kafkautil.PromptVersion()
 	c.Producer.Return.Successes = true

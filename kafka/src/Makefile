@@ -1,7 +1,7 @@
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
-BINARY_NAME=produce
+BINARY_NAME=kafka
 CMD_PATH=./main.go
 DIST=../bin
 DIST_MAC=$(DIST)/$(BINARY_NAME)-darwin

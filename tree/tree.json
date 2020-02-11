@@ -112,8 +112,9 @@
       "usage": "topic",
       "help": "List kafka topics",
       "formula": {
-        "path": "kafka/list/topic",
-        "bin": "list-topic-${so}"
+        "path": "kafka",
+        "bin": "kafka-${so}",
+        "config": "list-topic-config.json"
       },
       "parent": "root_kafka_list"
     },
@@ -121,8 +122,9 @@
       "usage": "topic",
       "help": "Create kafka topics",
       "formula": {
-        "path": "kafka/create/topic",
-        "bin": "create-topic-${so}"
+        "path": "kafka",
+        "bin": "kafka-${so}",
+        "config": "create-topic-config.json"
       },
       "parent": "root_kafka_create"
     },
@@ -130,8 +132,9 @@
       "usage": "consume",
       "help": "Consume kafka messages",
       "formula": {
-        "path": "kafka/consume",
-        "bin": "consume-${so}"
+        "path": "kafka",
+        "bin": "kafka-${so}",
+        "config": "consume-config.json"
       },
       "parent": "root_kafka"
     },
@@ -139,8 +142,9 @@
       "usage": "produce",
       "help": "Produce kafka messages",
       "formula": {
-        "path": "kafka/produce",
-        "bin": "produce-${so}"
+        "path": "kafka",
+        "bin": "kafka-${so}",
+        "config": "produce-config.json"
       },
       "parent": "root_kafka"
     },

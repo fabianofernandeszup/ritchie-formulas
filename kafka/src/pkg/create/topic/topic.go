@@ -6,17 +6,21 @@ import (
 
 	"github.com/Shopify/sarama"
 
-	"topic/pkg/kafkautil"
+	"github.com/ZupIT/ritchie-formulas/kafka/src/pkg/kafkautil"
 )
 
 type Inputs struct {
-	Urls         string
+	Urls        string
 	Name        string
 	Replication int16
 	Partitions  int32
 }
 
-func Create(i *Inputs) {
+func NewInputs(urls, name string, replication int16, partitions int32) *Inputs {
+	return &Inputs{Urls: urls, Name: name, Replication: replication, Partitions: partitions}
+}
+
+func (i *Inputs) Run() {
 	c := sarama.NewConfig()
 	c.Version = kafkautil.PromptVersion()
 
