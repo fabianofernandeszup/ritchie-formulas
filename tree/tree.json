@@ -149,26 +149,6 @@
       "parent": "root_kafka"
     },
     {
-      "usage": "user",
-      "help": "Create user",
-      "parent": "root_create"
-    },
-    {
-      "usage": "user",
-      "help": "Delete user",
-      "parent": "root_delete"
-    },
-    {
-      "usage": "zsh",
-      "help": "Generates auto-completion for zsh",
-      "parent": "root_completion"
-    },
-    {
-      "usage": "bash",
-      "help": "Generates auto-completion for bash",
-      "parent": "root_completion"
-    },
-    {
       "usage": "scaffold",
       "help": "Manipulate scaffold objects",
       "parent": "root"
@@ -299,6 +279,25 @@
         "bin": "docker-generate-compose-${so}"
       },
       "parent": "root_docker_generate"
+    },
+    {
+      "usage": "k8s",
+      "help": "Manipulate k8s objects",
+      "parent": "root"
+    },
+    {
+      "usage": "show",
+      "help": "Show k8s objects",
+      "parent": "root_k8s"
+    },
+    {
+      "usage": "logs",
+      "help": "Show k8s logs",
+      "formula": {
+        "path": "kubernetes/logs",
+        "bin": "kubernetes-logs-${so}"
+      },
+      "parent": "root_k8s_show"
     }
   ],
   "version": "1.0.0"
