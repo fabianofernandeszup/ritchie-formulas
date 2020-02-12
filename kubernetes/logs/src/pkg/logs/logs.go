@@ -62,7 +62,13 @@ func (in Inputs) Run() {
 	ind, _ := strconv.Atoi(strings.Split(itemSelect, " - ")[0])
 	podSelect := podsFilter[ind]
 
-	podLogOpts := v1.PodLogOptions{Follow:true}
+	var containersItems []string
+	for _, container := range podSelect.Spec.Containers {
+		containersItems = append(containersItems, container.Name)
+	}
+	containerSelect , _ := prompt.List("Select container: ", containersItems)
+
+	podLogOpts := v1.PodLogOptions{Follow:true, Container:containerSelect}
 
 	req := client.CoreV1().Pods(podSelect.Namespace).GetLogs(podSelect.Name, &podLogOpts)
 	podLogs, err := req.Stream()
