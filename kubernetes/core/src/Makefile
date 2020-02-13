@@ -1,7 +1,7 @@
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
-BINARY_NAME=kubernetes-logs
+BINARY_NAME=kubernetes
 CMD_PATH=./main.go
 DIST=../bin
 DIST_MAC=$(DIST)/$(BINARY_NAME)-darwin

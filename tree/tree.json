@@ -291,13 +291,39 @@
       "parent": "root_k8s"
     },
     {
+      "usage": "create",
+      "help": "Create k8s objects",
+      "parent": "root_k8s"
+    },
+    {
       "usage": "logs",
       "help": "Show k8s logs",
       "formula": {
-        "path": "kubernetes/logs",
-        "bin": "kubernetes-logs-${so}"
+        "path": "kubernetes/core",
+        "bin": "kubernetes-${so}",
+        "config": "logs-config.json"
       },
       "parent": "root_k8s_show"
+    },
+    {
+      "usage": "health",
+      "help": "Show k8s health check",
+      "formula": {
+        "path": "kubernetes/core",
+        "bin": "kubernetes-${so}",
+        "config": "health-config.json"
+      },
+      "parent": "root_k8s_show"
+    },
+    {
+      "usage": "port-forward",
+      "help": "Create k8s port forward",
+      "formula": {
+        "path": "kubernetes/core",
+        "bin": "kubernetes-${so}",
+        "config": "port-config.json"
+      },
+      "parent": "root_k8s_create"
     }
   ],
   "version": "1.0.0"

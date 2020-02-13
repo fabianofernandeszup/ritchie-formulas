@@ -47,8 +47,8 @@ func GetPod(client *kubernetes.Clientset, filter string, namespace string) v1.Po
 	if len(pods.Items) == 0 {
 		log.Fatalf("No result pods to namespace: %s.\n", namespace)
 	}
+	log.Println("Pod list:")
 	for _, pod := range pods.Items {
-		log.Println("Pod list:")
 		fmt.Printf("%s - %s\n", pod.Name, pod.Status.Phase)
 	}
 	var podsFilter []v1.Pod
