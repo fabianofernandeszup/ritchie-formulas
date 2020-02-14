@@ -1,4 +1,4 @@
-module kubernetes/logs
+module kubernetes/core
 
 go 1.13
 

@@ -1,10 +1,11 @@
 {
+  "command": "logs",
   "description": "Show logs kubernetes",
   "inputs" : [
     {
       "name": "namespace",
       "type": "text",
-      "label": "Type kubernates namespace: ",
+      "label": "Type kubernetes namespace: ",
       "cache": {
         "active": true
       }
