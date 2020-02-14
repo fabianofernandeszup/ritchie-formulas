@@ -39,6 +39,22 @@
       "help": "Delete user",
       "parent": "root_delete"
     },
+    ,
+    {
+      "usage": "context",
+      "help": "Delete context",
+      "parent": "root_delete"
+    },
+    {
+      "usage": "show",
+      "help": "Show objects",
+      "parent": "root"
+    },
+    {
+      "usage": "context",
+      "help": "Show context",
+      "parent": "root_show"
+    },
     {
       "usage": "help",
       "help": "Help about any command",
@@ -62,6 +78,12 @@
     {
       "usage": "credential",
       "help": "Set provider credential",
+      "parent": "root_set"
+    },
+    ,
+    {
+      "usage": "context",
+      "help": "Set context for cli",
       "parent": "root_set"
     },
     {
