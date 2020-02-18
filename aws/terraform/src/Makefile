@@ -1,9 +1,9 @@
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
-BINARY_NAME=terraform-cli
+BINARY_NAME=terraform
 CMD_PATH=./main.go
-DIST=../bin
+DIST=../$(BINARY_NAME)-bin
 DIST_MAC=$(DIST)/$(BINARY_NAME)-darwin
 DIST_LINUX=$(DIST)/$(BINARY_NAME)-linux
 
