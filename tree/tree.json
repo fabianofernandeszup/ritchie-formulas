@@ -217,6 +217,15 @@
       "parent": "root_github"
     },
     {
+      "usage": "hello-world",
+      "help": "this is my first form.",
+      "formula": {
+        "path": "github/hello-world",
+        "bin": "hello-world-${so}"
+      },
+      "parent": "root_github"
+    },
+    {
       "usage": "zup-webhook",
       "help": "Apply Zup WebHook CI and Zup Bot",
       "formula": {

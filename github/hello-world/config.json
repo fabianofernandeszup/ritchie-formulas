@@ -1,0 +1,25 @@
+{
+  "description": "HandBook Application",
+  "inputs": [
+    {
+      "name": "branch",
+      "type": "text",
+      "label": "Select destination branch:",
+      "cache": {
+        "active": true,
+        "qtd": 100,
+        "newLabel": "Type new branch. "
+      }
+    },
+    {
+      "name": "push",
+      "type": "bool",
+      "label": "Push after merge ?",
+      "default": "yes",
+      "items": [
+        "yes",
+        "false"
+      ]
+    }
+  ]
+}
