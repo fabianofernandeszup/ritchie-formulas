@@ -27,8 +27,9 @@ bin:
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
 	./copy-bin-configs.sh "$(FORMULAS)"
 
-test-local: bin
+test-local:bin
 	rm -rf ~/.rit/formulas
 	rm -rf ~/.rit/.cmd_tree.json
-	mv formulas ~/.rit
+	find formulas -name "*.zip" | while read filename; do echo $$filename && unzip -o -d `dirname $$filename` $$filename; done
+	cp -Rf formulas ~/.rit
 	cp tree/tree.json  ~/.rit/.cmd_tree.json
