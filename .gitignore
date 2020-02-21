@@ -6,8 +6,8 @@
 *.so
 *.dylib
 
-/*-bin/
-**/*-bin/*
+/bin/
+**/bin/*
 /test/tests.*
 /test/coverage.*
 /go.sum
