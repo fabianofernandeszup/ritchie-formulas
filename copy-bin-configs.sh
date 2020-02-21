@@ -32,7 +32,7 @@ create_formula_checksum() {
 compact_formula_bin_and_remove_them() {
   for bin_dir in `find formulas/"$formula" -type d -name "bin"`; do
     for binary in `ls -1 $bin_dir`; do
-      zip "${bin_dir}/${binary}.zip" "${bin_dir}/${binary}"
+      zip -j "${bin_dir}/${binary}.zip" "${bin_dir}/${binary}"
       rm "${bin_dir}/${binary}"
     done;
   done
