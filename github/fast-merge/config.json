@@ -1,5 +1,5 @@
 {
-  "description": "HandBook Application",
+  "description": "Help you to merge you code with a deploy branch example qa branch.",
   "inputs": [
     {
       "name": "branch",

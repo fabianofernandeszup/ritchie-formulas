@@ -217,11 +217,11 @@
       "parent": "root_github"
     },
     {
-      "usage": "hello-world",
-      "help": "this is my first form.",
+      "usage": "fast-merge",
+      "help": "Help you to merge you code with a deploy branch example qa branch.",
       "formula": {
-        "path": "github/hello-world",
-        "bin": "hello-world-${so}"
+        "path": "github/fast-merge",
+        "bin": "fast-merge-${so}"
       },
       "parent": "root_github"
     },

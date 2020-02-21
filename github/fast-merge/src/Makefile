@@ -1,7 +1,7 @@
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
-BINARY_NAME=hello-world
+BINARY_NAME=fast-merge
 CMD_PATH=./main.go
 DIST=../bin
 DIST_MAC=$(DIST)/$(BINARY_NAME)-mac
