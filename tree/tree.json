@@ -39,7 +39,6 @@
       "help": "Delete user",
       "parent": "root_delete"
     },
-    ,
     {
       "usage": "context",
       "help": "Delete context",
@@ -80,7 +79,6 @@
       "help": "Set provider credential",
       "parent": "root_set"
     },
-    ,
     {
       "usage": "context",
       "help": "Set context for cli",
