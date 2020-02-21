@@ -129,7 +129,7 @@
       "usage": "topic",
       "help": "List kafka topics",
       "formula": {
-        "path": "kafka/core",
+        "path": "kafka",
         "bin": "kafka-${so}",
         "config": "list-topic-config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
@@ -140,7 +140,7 @@
       "usage": "topic",
       "help": "Create kafka topics",
       "formula": {
-        "path": "kafka/core",
+        "path": "kafka",
         "bin": "kafka-${so}",
         "config": "create-topic-config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
@@ -151,7 +151,7 @@
       "usage": "consume",
       "help": "Consume kafka messages",
       "formula": {
-        "path": "kafka/core",
+        "path": "kafka",
         "bin": "kafka-${so}",
         "config": "consume-config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
@@ -162,7 +162,7 @@
       "usage": "produce",
       "help": "Produce kafka messages",
       "formula": {
-        "path": "kafka/core",
+        "path": "kafka",
         "bin": "kafka-${so}",
         "config": "produce-config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
