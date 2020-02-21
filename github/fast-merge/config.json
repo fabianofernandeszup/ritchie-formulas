@@ -4,7 +4,8 @@
     {
       "name": "branch",
       "type": "text",
-      "label": "Select destination branch:",
+      "label": "Select destination branch(default qa):",
+      "default": "qa",
       "cache": {
         "active": true,
         "qtd": 100,

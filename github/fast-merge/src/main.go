@@ -15,7 +15,7 @@ func main() {
 	push := os.Getenv("PUSH")
 	currentBranch := execCommand("git rev-parse --abbrev-ref HEAD")
 
-	execCommand("git fetch")
+	execCommand("git pull")
 	execCommand("git branch -D " + destinationBranch)
 	execCommand("git checkout " + destinationBranch)
 	execCommand("git merge origin " + currentBranch)
