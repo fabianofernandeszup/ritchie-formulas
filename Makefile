@@ -17,13 +17,10 @@ PWD_INITIAL=$(shell pwd)
 
 push-s3:
 	echo "Init pwd: $(PWD_INITIAL)"
-	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
+	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
 	./copy-bin-configs.sh "$(FORMULAS)"
-	zip -r formulas.zip formulas
-	cp formulas.zip formulas
 	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
 	rm -rf formulas
-	rm -rf formulas.zip
 
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
