@@ -19,11 +19,8 @@ push-s3:
 	echo "Init pwd: $(PWD_INITIAL)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
 	./copy-bin-configs.sh "$(FORMULAS)"
-	find formulas/ -type d -name "*-bin" -exec zip -r {}.zip {} \;
-	find formulas/ -type d -name "*-bin" -exec rm -rf {} +
-	#aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
-	#rm -rf formulas
-	#rm -rf formulas.zip
+	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
+	rm -rf formulas
 
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
