@@ -37,14 +37,15 @@ func execCommand(value string) string {
 	cmd.Start()
 	scanner := bufio.NewScanner(stdout)
 	scanner.Split(bufio.ScanLines)
-	m := ""
+	commandResultMessage := ""
 	for scanner.Scan() {
-		m += scanner.Text()
+		m := scanner.Text()
 		fmt.Println(m)
+		commandResultMessage += m
 	}
 	err := cmd.Wait()
 	if err != nil {
 		log.Fatalf("Failed to execute command %v\nParams: %v\nError: %v", command, params, outError.String())
 	}
-	return m
+	return commandResultMessage
 }
