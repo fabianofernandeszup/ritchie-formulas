@@ -221,10 +221,11 @@
     },
     {
       "usage": "fast-merge",
-      "help": "Help you to merge you code with a deploy branch example qa branch.",
+      "help": "Help you to merge your code with a deploy branch example qa branch.",
       "formula": {
         "path": "github/fast-merge",
-        "bin": "fast-merge-${so}"
+        "bin": "fast-merge-${so}",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/fast-merge"
       },
       "parent": "root_github"
     },
