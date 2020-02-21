@@ -16,7 +16,6 @@
       "formula": {
         "path": "aws/terraform",
         "bin": "terraform-cli-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/aws/terraform"
       },
       "parent": "root_aws_apply"
@@ -107,7 +106,6 @@
       "formula": {
         "path": "darwin/deploy",
         "bin": "darwin-deploy-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/darwin/deploy"
       },
       "parent": "root_darwin"
@@ -187,7 +185,6 @@
       "formula": {
         "path": "scaffold/coffee",
         "bin": "coffee-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/coffee"
       },
       "parent": "root_scaffold_generate"
@@ -198,7 +195,6 @@
       "formula": {
         "path": "scaffold/spring-iti",
         "bin": "spring-iti-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-iti"
       },
       "parent": "root_scaffold_generate"
@@ -229,7 +225,6 @@
       "formula": {
         "path": "github/zup-webhook",
         "bin": "zup-webhook-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/zup-webhook"
       },
       "parent": "root_github_generate"
@@ -240,7 +235,6 @@
       "formula": {
         "path": "github/navigate-handbook",
         "bin": "navigate-handbook-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/navigate-handbook"
       },
       "parent": "root_github_navigate"
@@ -251,7 +245,6 @@
       "formula": {
         "path": "github/search-handbook",
         "bin": "search-handbook-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/search-handbook"
       },
       "parent": "root_github_search"
@@ -272,7 +265,6 @@
       "formula": {
         "path": "jenkins/jobs",
         "bin": "jobs-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/jenkins/jobs"
       },
       "parent": "root_jenkins_generate"
@@ -293,7 +285,6 @@
       "formula": {
         "path": "vivo/deploy",
         "bin": "vivo-deploy-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/vivo/deploy"
       },
       "parent": "root_vivo_generate"
@@ -314,7 +305,6 @@
       "formula": {
         "path": "docker/compose",
         "bin": "docker-generate-compose-${so}",
-        "config": "config.json",
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/docker/compose"
       },
       "parent": "root_docker_generate"
