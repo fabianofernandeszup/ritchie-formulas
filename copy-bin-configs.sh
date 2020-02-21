@@ -17,11 +17,11 @@ copy_config_files() {
 }
 
 copy_formula_bin() {
-  cp -rf "$formula"/bin formulas/"$formula"
+  cp -rf "$formula"/*-bin formulas/"$formula"
 }
 
 create_formula_checksum() {
-  find "${formula}"/bin -type f -exec md5sum {} \; | sort -k 2 | md5sum | cut -f1 -d ' ' > formulas/"${formula}.md5"
+  find "${formula}"/*-bin -type f -exec md5sum {} \; | sort -k 2 | md5sum | cut -f1 -d ' ' > formulas/"${formula}.md5"
 }
 
 init() {
