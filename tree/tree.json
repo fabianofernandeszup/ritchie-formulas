@@ -15,7 +15,9 @@
       "help": "Apply Aws terraform objects",
       "formula": {
         "path": "aws/terraform",
-        "bin": "terraform-cli-${so}"
+        "bin": "terraform-cli-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/aws/terraform"
       },
       "parent": "root_aws_apply"
     },
@@ -57,11 +59,6 @@
     {
       "usage": "help",
       "help": "Help about any command",
-      "parent": "root"
-    },
-    {
-      "usage": "init",
-      "help": "Initialize a working directory",
       "parent": "root"
     },
     {
@@ -109,7 +106,9 @@
       "help": "Deploy Module Darwin",
       "formula": {
         "path": "darwin/deploy",
-        "bin": "darwin-deploy-${so}"
+        "bin": "darwin-deploy-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/darwin/deploy"
       },
       "parent": "root_darwin"
     },
@@ -134,7 +133,8 @@
       "formula": {
         "path": "kafka",
         "bin": "kafka-${so}",
-        "config": "list-topic-config.json"
+        "config": "list-topic-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
       },
       "parent": "root_kafka_list"
     },
@@ -144,7 +144,8 @@
       "formula": {
         "path": "kafka",
         "bin": "kafka-${so}",
-        "config": "create-topic-config.json"
+        "config": "create-topic-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
       },
       "parent": "root_kafka_create"
     },
@@ -154,7 +155,8 @@
       "formula": {
         "path": "kafka",
         "bin": "kafka-${so}",
-        "config": "consume-config.json"
+        "config": "consume-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
       },
       "parent": "root_kafka"
     },
@@ -164,7 +166,8 @@
       "formula": {
         "path": "kafka",
         "bin": "kafka-${so}",
-        "config": "produce-config.json"
+        "config": "produce-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
       },
       "parent": "root_kafka"
     },
@@ -183,7 +186,9 @@
       "help": "Generates a project by coffee template",
       "formula": {
         "path": "scaffold/coffee",
-        "bin": "coffee-${so}"
+        "bin": "coffee-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/coffee"
       },
       "parent": "root_scaffold_generate"
     },
@@ -192,7 +197,9 @@
       "help": "Generates a project for kotlin/java",
       "formula": {
         "path": "scaffold/spring-iti",
-        "bin": "spring-iti-${so}"
+        "bin": "spring-iti-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-iti"
       },
       "parent": "root_scaffold_generate"
     },
@@ -221,7 +228,9 @@
       "help": "Apply Zup WebHook CI and Zup Bot",
       "formula": {
         "path": "github/zup-webhook",
-        "bin": "zup-webhook-${so}"
+        "bin": "zup-webhook-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/zup-webhook"
       },
       "parent": "root_github_generate"
     },
@@ -230,7 +239,9 @@
       "help": "Navigate in your handbook",
       "formula": {
         "path": "github/navigate-handbook",
-        "bin": "navigate-handbook-${so}"
+        "bin": "navigate-handbook-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/navigate-handbook"
       },
       "parent": "root_github_navigate"
     },
@@ -239,7 +250,9 @@
       "help": "Search in your handbook",
       "formula": {
         "path": "github/search-handbook",
-        "bin": "search-handbook-${so}"
+        "bin": "search-handbook-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/search-handbook"
       },
       "parent": "root_github_search"
     },
@@ -258,7 +271,9 @@
       "help": "Apply Jenkins Job CI",
       "formula": {
         "path": "jenkins/jobs",
-        "bin": "jobs-${so}"
+        "bin": "jobs-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/jenkins/jobs"
       },
       "parent": "root_jenkins_generate"
     },
@@ -277,7 +292,9 @@
       "help": "Deploy Vivo in PRD",
       "formula": {
         "path": "vivo/deploy",
-        "bin": "vivo-deploy-${so}"
+        "bin": "vivo-deploy-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/vivo/deploy"
       },
       "parent": "root_vivo_generate"
     },
@@ -296,7 +313,9 @@
       "help": "Generate docker-compose.yml in current directory",
       "formula": {
         "path": "docker/compose",
-        "bin": "docker-generate-compose-${so}"
+        "bin": "docker-generate-compose-${so}",
+        "config": "config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/docker/compose"
       },
       "parent": "root_docker_generate"
     },
@@ -321,7 +340,8 @@
       "formula": {
         "path": "kubernetes/core",
         "bin": "kubernetes-${so}",
-        "config": "logs-config.json"
+        "config": "logs-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
       },
       "parent": "root_k8s_show"
     },
@@ -331,7 +351,8 @@
       "formula": {
         "path": "kubernetes/core",
         "bin": "kubernetes-${so}",
-        "config": "health-config.json"
+        "config": "health-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
       },
       "parent": "root_k8s_show"
     },
@@ -341,7 +362,8 @@
       "formula": {
         "path": "kubernetes/core",
         "bin": "kubernetes-${so}",
-        "config": "port-config.json"
+        "config": "port-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
       },
       "parent": "root_k8s_create"
     }
