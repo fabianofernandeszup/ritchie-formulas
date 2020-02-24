@@ -197,6 +197,25 @@
       "parent": "root_scaffold_generate"
     },
     {
+      "usage": "spring-starter",
+      "help": "Generates a project Spring",
+      "formula": {
+        "path": "scaffold/spring-starter",
+        "bin": "spring-starter-${so}",
+        "config": "create-application-config.json"
+      },
+      "parent": "root_scaffold_generate"
+    },
+    {
+      "usage": "list",
+      "help": "List dependencies Spring",
+      "formula": {
+        "path": "scaffold/spring-starter",
+        "bin": "spring-starter-${so}"
+      },
+      "parent": "root_scaffold_generate_spring-starter"
+    },
+    {
       "usage": "github",
       "help": "Manipulate GitHub objects",
       "parent": "root"
