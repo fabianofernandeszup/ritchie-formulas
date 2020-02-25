@@ -55,7 +55,7 @@
       {
         "name" : "dependencies",
         "type" : "text",
-        "label" : "Type the dependencies list [ex.: web,postgresql,data-mongodb]: "
+        "label" : "Enter the dependencies ids [ex.: web,postgresql]. For list dependencies: 'rit scaffold generate spring-starter list' : "
       }
     ]
   }

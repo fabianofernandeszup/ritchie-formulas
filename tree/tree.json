@@ -211,7 +211,8 @@
       "help": "List dependencies Spring",
       "formula": {
         "path": "scaffold/spring-starter",
-        "bin": "spring-starter-${so}"
+        "bin": "spring-starter-${so}",
+        "config": "list-dependencies-config.json"
       },
       "parent": "root_scaffold_generate_spring-starter"
     },
