@@ -80,7 +80,7 @@ func downloadFile(inputs Inputs) (string, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		err := fmt.Errorf("Invalid parameters ou dependencies!\nResponse Status Code: %s", resp.Status)
+		err := fmt.Errorf("Invalid parameters ou dependencies! Response Status Code: %s", resp.Status)
 		return "", err
 	}
 

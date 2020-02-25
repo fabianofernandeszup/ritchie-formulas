@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/ZupIT/ritchie-formulas/scaffold/spring-starter/src/pkg/application"
-	"github.com/ZupIT/ritchie-formulas/scaffold/spring-starter/src/pkg/list"
+	"github.com/ZupIT/ritchie-formulas/scaffold/spring-starter/src/pkg/dependencies/list"
 )
 
 const (
