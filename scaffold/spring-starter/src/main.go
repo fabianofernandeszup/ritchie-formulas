@@ -22,15 +22,12 @@ func loadInputs() CommandHandler {
 	switch command {
 	case createCmd:
 		return application.Inputs{
-			Type:        os.Getenv("TYPE"),
-			Language:    os.Getenv("LANGUAGE"),
-			BootVersion: os.Getenv("BOOT_VERSION"),
-			// BaseDir:     os.Getenv("BASE_DIR"),
-			GroupId:    os.Getenv("GROUP_ID"),
-			ArtifactId: os.Getenv("ARTIFACT_ID"),
-			// Name:         os.Getenv("NAME"),
-			Description: os.Getenv("DESCRIPTION"),
-			// PackageName:  os.Getenv("PACKAGE_NAME"),
+			Type:         os.Getenv("TYPE"),
+			Language:     os.Getenv("LANGUAGE"),
+			BootVersion:  os.Getenv("BOOT_VERSION"),
+			GroupId:      os.Getenv("GROUP_ID"),
+			ArtifactId:   os.Getenv("ARTIFACT_ID"),
+			Description:  os.Getenv("DESCRIPTION"),
 			Packaging:    os.Getenv("PACKAGING"),
 			JavaVersion:  os.Getenv("JAVA_VERSION"),
 			Dependencies: os.Getenv("DEPENDENCIES"),
