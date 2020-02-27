@@ -180,6 +180,11 @@
       "parent": "root_scaffold"
     },
     {
+      "usage": "show",
+      "help": "List commands",
+      "parent": "root_scaffold"
+    },
+    {
       "usage": "coffee",
       "help": "Generates a project by coffee template",
       "formula": {
@@ -205,19 +210,21 @@
       "formula": {
         "path": "scaffold/spring-starter",
         "bin": "spring-starter-${so}",
-        "config": "create-application-config.json"
+        "config": "create-application-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-starter"
       },
       "parent": "root_scaffold_generate"
     },
     {
-      "usage": "list",
+      "usage": "spring-starter-dependencies",
       "help": "List dependencies Spring",
       "formula": {
         "path": "scaffold/spring-starter",
         "bin": "spring-starter-${so}",
-        "config": "list-dependencies-config.json"
+        "config": "list-dependencies-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-starter"
       },
-      "parent": "root_scaffold_generate_spring-starter"
+      "parent": "root_scaffold_show"
     },
     {
       "usage": "github",

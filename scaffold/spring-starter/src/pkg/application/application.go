@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ZupIT/ritchie-formulas/scaffold/spring-starter/src/pkg/fileutil"
+	"github.com/ZupIT/ritchie-formulas/scaffold/spring-starter/src/pkg/file/fileutil"
 )
 
 const (
