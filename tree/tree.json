@@ -220,6 +220,16 @@
       "parent": "root_github"
     },
     {
+      "usage": "fast-merge",
+      "help": "Help you to merge your code with a deploy branch example qa branch.",
+      "formula": {
+        "path": "github/fast-merge",
+        "bin": "fast-merge-${so}",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/fast-merge"
+      },
+      "parent": "root_github"
+    },
+    {
       "usage": "zup-webhook",
       "help": "Apply Zup WebHook CI and Zup Bot",
       "formula": {
