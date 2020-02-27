@@ -1,4 +1,5 @@
 #Makefiles
+BRANCH=
 TERRAFORM=aws/terraform
 DARWIN=darwin/deploy
 WEBHOOK=github/zup-webhook
@@ -18,11 +19,12 @@ PWD_INITIAL=$(shell pwd)
 FORM = $($(form))
 
 push-s3:
-	echo "Init pwd: $(PWD_INITIAL)"
-	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
-	./copy-bin-configs.sh "$(FORMULAS)"
-	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
-	rm -rf formulas
+	echo $(BRANCH_VERSION) $(RITCHIE_AWS_BUCKET)
+#	echo "Init pwd: $(PWD_INITIAL)"
+#	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
+#	./copy-bin-configs.sh "$(FORMULAS)"
+#	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
+#	rm -rf formulas
 
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
@@ -31,7 +33,7 @@ bin:
 	./copy-bin-configs.sh "$(FORMULAS)"
 
 test-local:
-ifneq "$(FORM)" ""
+ifneq "$(FORM)"
 	echo "true: $(FORM)"
 	$(MAKE) bin FORMULAS=$(FORM)
 	rm -rf ~/.rit/formulas/$(FORM)
