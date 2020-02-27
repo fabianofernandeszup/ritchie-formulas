@@ -12,27 +12,38 @@ KAFKA=kafka
 VIVO=vivo/deploy
 DOCKER=docker/compose
 KUBERNETES=kubernetes/core
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(SC_SPRING_STARTER) $(KAFKA) $(VIVO) $(DOCKER) $(NAVIGATE_HANDBOOK) $(SEARCH_HANDBOOK) $(KUBERNETES)
+FAST_MERGE=github/fast-merge
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(SC_SPRING_STARTER) $(KAFKA) $(VIVO) $(DOCKER) $(NAVIGATE_HANDBOOK) $(SEARCH_HANDBOOK) $(KUBERNETES) $(FAST_MERGE)
 
 PWD_INITIAL=$(shell pwd)
 
+FORM = $($(form))
+
 push-s3:
 	echo "Init pwd: $(PWD_INITIAL)"
-	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
+	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
 	./copy-bin-configs.sh "$(FORMULAS)"
-	zip -r formulas.zip formulas
-	cp formulas.zip formulas
 	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
 	rm -rf formulas
-	rm -rf formulas.zip
 
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
+	echo "Formulas bin: $(FORMULAS)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
 	./copy-bin-configs.sh "$(FORMULAS)"
 
-test-local: bin
+test-local:
+ifneq "$(FORM)" ""
+	echo "true: $(FORM)"
+	$(MAKE) bin FORMULAS=$(FORM)
+	rm -rf ~/.rit/formulas/$(FORM)
+	cp -r formulas/* ~/.rit/formulas
+	rm -rf formulas
+else
+	echo "true: $(FORM)"
+	$(MAKE) bin
 	rm -rf ~/.rit/formulas
-	rm -rf ~/.rit/.cmd_tree.json
 	mv formulas ~/.rit
+endif
+	rm -rf ~/.rit/.cmd_tree.json
 	cp tree/tree.json  ~/.rit/.cmd_tree.json
