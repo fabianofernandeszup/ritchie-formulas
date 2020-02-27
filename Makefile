@@ -30,6 +30,6 @@ bin:
 test-local:bin
 	rm -rf ~/.rit/formulas
 	rm -rf ~/.rit/.cmd_tree.json
-	find formulas -name "*.zip" | while read filename; do echo $$filename && unzip -o -d `dirname $$filename` $$filename; done
-	cp -Rf formulas ~/.rit
+	./unzip-bin-configs.sh
+	mv formulas ~/.rit
 	cp tree/tree.json  ~/.rit/.cmd_tree.json
