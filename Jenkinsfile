@@ -14,45 +14,45 @@ pipeline{
 
     stages
     {
-     stage("Setting environment variables"){
-      parallel {
-          stage('master') {
-              when {
-                  expression {
-                      return branch_name =~ /^master/
+        stage("Setting environment variables"){
+          parallel {
+              stage('master') {
+                  when {
+                      expression {
+                          return branch_name =~ /^master/
+                      }
+                  }
+                  steps {
+                      script{
+                        RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_PRODUCTION_MARTE"]
+                        RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION_MARTE"]
+                        RITCHIE_AWS_REGION = "sa-east-1"
+                        RITCHIE_AWS_BUCKET = "ritchie-cli-bucket152849730126474"
+                        buildable = true
+                      }
                   }
               }
-              steps {
-                  script{
-                    RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_PRODUCTION_MARTE"]
-                    RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION_MARTE"]
-                    RITCHIE_AWS_REGION = "sa-east-1"
-                    RITCHIE_AWS_BUCKET = "ritchie-cli-bucket152849730126474"
-                    buildable = true
+
+              stage('qa') {
+                  when {
+                      expression {
+                          return branch_name =~ /^qa/
+                      }
+                  }
+                  steps {
+                      script{
+                        RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_QA_MARTE"]
+                        RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_QA_MARTE"]
+                        RITCHIE_AWS_REGION = "sa-east-1"
+                        RITCHIE_AWS_BUCKET = "ritchie-cli-bucket234376412767550"
+                        buildable = true
+                      }
                   }
               }
           }
+        }
 
-          stage('qa') {
-              when {
-                  expression {
-                      return branch_name =~ /^qa/
-                  }
-              }
-              steps {
-                  script{
-                    RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_QA_MARTE"]
-                    RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_QA_MARTE"]
-                    RITCHIE_AWS_REGION = "sa-east-1"
-                    RITCHIE_AWS_BUCKET = "ritchie-cli-bucket234376412767550"
-                    buildable = true
-                  }
-              }
-          }
-      }
-
-
-      stage("Building formulas and sending them to s3"){
+        stage("Building formulas and sending them to s3"){
            when {
               expression {
                   buildable
@@ -76,8 +76,9 @@ pipeline{
                     }
                 }
             }
-      }
+        }
     }
+
     post {
         success {
             echo "Build and push successfully executed by Jenkins"
@@ -86,6 +87,5 @@ pipeline{
             echo "Build failed"
         }
     }
-
 }
 
