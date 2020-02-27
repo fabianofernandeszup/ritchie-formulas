@@ -15,6 +15,8 @@ FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRI
 
 PWD_INITIAL=$(shell pwd)
 
+FORM = $($(form))
+
 push-s3:
 	echo "Init pwd: $(PWD_INITIAL)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
@@ -24,12 +26,25 @@ push-s3:
 
 bin:
 	echo "Init pwd: $(PWD_INITIAL)"
+	echo "Formulas bin: $(FORMULAS)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL); done
 	./copy-bin-configs.sh "$(FORMULAS)"
 
-test-local:bin
+test-local:
+ifneq "$(FORM)" ""
+	echo "true: $(FORM)"
+	$(MAKE) bin FORMULAS=$(FORM)
+	mkdir -p ~/.rit/formulas
+	rm -rf ~/.rit/formulas/$(FORM)
+	./unzip-bin-configs.sh
+	cp -r formulas/* ~/.rit/formulas
+	rm -rf formulas
+else
+	echo "true: $(FORM)"
+	$(MAKE) bin
 	rm -rf ~/.rit/formulas
-	rm -rf ~/.rit/.cmd_tree.json
 	./unzip-bin-configs.sh
 	mv formulas ~/.rit
+endif
+	rm -rf ~/.rit/.cmd_tree.json
 	cp tree/tree.json  ~/.rit/.cmd_tree.json
