@@ -33,7 +33,7 @@ bin:
 	./copy-bin-configs.sh "$(FORMULAS)"
 
 test-local:
-ifneq "$(FORM)"
+ifneq "$(FORM)" ""
 	echo "true: $(FORM)"
 	$(MAKE) bin FORMULAS=$(FORM)
 	rm -rf ~/.rit/formulas/$(FORM)
