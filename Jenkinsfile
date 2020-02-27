@@ -14,7 +14,7 @@ pipeline{
 
     stages
     {
-stage("Setting environment variables"){
+     stage("Setting environment variables"){
       parallel {
           stage('master') {
               when {
@@ -32,6 +32,7 @@ stage("Setting environment variables"){
                   }
               }
           }
+
           stage('qa') {
               when {
                   expression {
@@ -49,6 +50,8 @@ stage("Setting environment variables"){
               }
           }
       }
+
+
       stage("Building formulas and sending them to s3"){
            when {
               expression {
@@ -70,7 +73,7 @@ stage("Setting environment variables"){
                         } catch (Error error){
                             echo "Error while building or pushing to s3"
                         }
-                      }
+                    }
                 }
             }
       }
@@ -83,5 +86,6 @@ stage("Setting environment variables"){
             echo "Build failed"
         }
     }
+
 }
 
