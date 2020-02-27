@@ -19,7 +19,7 @@ PWD_INITIAL=$(shell pwd)
 FORM = $($(form))
 
 push-s3:
-	echo $(BRANCH_VERSION) $(RITCHIE_AWS_BUCKET)
+	echo $(BRANCH_NAME) $(RITCHIE_AWS_BUCKET)
 #	echo "Init pwd: $(PWD_INITIAL)"
 #	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
 #	./copy-bin-configs.sh "$(FORMULAS)"
