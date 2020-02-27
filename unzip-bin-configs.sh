@@ -1,3 +1,2 @@
 #!/bin/sh
-find formulas -name "*.zip" | while read filename; do unzip -o -d "`dirname "$filename"`" "$filename"; done;
-rm formulas/*.zip
+find formulas -name "*.zip" | while read filename; do unzip -o -d "`dirname "$filename"`" "$filename"; rm -f "$filename"; done;
