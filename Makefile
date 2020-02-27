@@ -36,13 +36,16 @@ test-local:
 ifneq "$(FORM)" ""
 	echo "true: $(FORM)"
 	$(MAKE) bin FORMULAS=$(FORM)
+	mkdir -p ~/.rit/formulas
 	rm -rf ~/.rit/formulas/$(FORM)
+	./unzip-bin-configs.sh
 	cp -r formulas/* ~/.rit/formulas
 	rm -rf formulas
 else
 	echo "true: $(FORM)"
 	$(MAKE) bin
 	rm -rf ~/.rit/formulas
+	./unzip-bin-configs.sh
 	mv formulas ~/.rit
 endif
 	rm -rf ~/.rit/.cmd_tree.json
