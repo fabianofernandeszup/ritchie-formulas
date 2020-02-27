@@ -1,3 +1,5 @@
+def buildable = false
+
 pipeline{
     agent {
         dockerfile {
