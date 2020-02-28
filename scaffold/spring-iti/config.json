@@ -5,13 +5,15 @@
       "name" : "packaging",
       "type" : "text",
       "default" : "jar",
-      "label" : "Pick your packaging type[jar]: "
+      "label" : "Pick your packaging type: ",
+      "items": ["jar"]
     },
     {
       "name" : "java_version",
       "type" : "text",
       "default" : "11",
-      "label" : "Pick your java version [11]: "
+      "label" : "Pick your Java version: ",
+      "items": ["11"]
     },
     {
       "name" : "language",
@@ -54,7 +56,7 @@
     {
       "name" : "dependencies",
       "type" : "text",
-      "label" : "Type the dependencies list [ex.: iti-web,iti-dynamodb,iti-kafka]: "
+      "label" : "Select one or more dependencies [iti-web,iti-dynamodb,iti-kafka]: "
     }
   ]
 }
