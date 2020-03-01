@@ -17,7 +17,10 @@ func main() {
 	}
 
 	fileutil.CreateIfNotExists(name)
-	templateFile, _ := fileutil.ReadFile(mainPaths.RitchieScaffoldTemplate + "/template-config.json")
+	templateFile, err := fileutil.ReadFile(mainPaths.RitchieScaffoldTemplate + "/template-config.json")
+	if err != nil {
+		panic(err)
+	}
 	fileutil.WriteFile(name+"/config.json", templateFile)
 	color.Green("Generate formula:" + name + " with description:" + description + " .")
 

@@ -6,7 +6,6 @@ import (
 )
 
 type MainPaths struct {
-	RitchieScaffold         string
 	RitchieScaffoldTemplate string
 	MakeFile                string
 	TreeFile                string
@@ -15,8 +14,7 @@ type MainPaths struct {
 func RightDir(mainPaths MainPaths) bool {
 	if fileutil.Exists(mainPaths.TreeFile) ||
 		fileutil.Exists(mainPaths.MakeFile) ||
-		fileutil.Exists(mainPaths.RitchieScaffoldTemplate) ||
-		fileutil.Exists(mainPaths.RitchieScaffold) {
+		fileutil.Exists(mainPaths.RitchieScaffoldTemplate) {
 		return true
 	}
 	color.Red("Please go to the ritchie-formulas path.")
@@ -25,8 +23,7 @@ func RightDir(mainPaths MainPaths) bool {
 
 func BuildMainPaths() MainPaths {
 	return MainPaths{
-		RitchieScaffold:         "scaffold/ritchie",
-		RitchieScaffoldTemplate: "scaffold/ritchie/template",
+		RitchieScaffoldTemplate: "scaffold/ritchie/src/template",
 		MakeFile:                "Makefile",
 		TreeFile:                "tree/tree.json",
 	}
