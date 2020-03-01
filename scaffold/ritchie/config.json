@@ -1,16 +1,15 @@
 {
   "description": "Scaffold to make ritchie formulas.",
-  "inputs" : [
+  "inputs": [
     {
-      "name" : "example_entry",
-      "type" : "text",
-      "default": "This World is beautiful.",
-      "label" : "Type some message:",
-      "cache" : {
-        "active": true,
-        "qtd" : 1000,
-        "newLabel" : "Type new message. "
-      }
+      "name": "formula_name",
+      "type": "text",
+      "label": "Type the formula name:"
+    },
+    {
+      "name": "formula_description",
+      "type": "text",
+      "label": "Type the formula description:"
     }
   ]
 }

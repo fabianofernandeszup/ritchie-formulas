@@ -1,14 +1,24 @@
 package main
 
 import (
+	"github.com/fatih/color"
 	"os"
-	"ritchie/pkg/ritchie"
+	"ritchie/pkg/file/fileutil"
+	"ritchie/pkg/ritchie/pathutil"
 )
 
 func main() {
 
-	 input := os.Getenv("EXAMPLE_ENTRY")
+	name := os.Getenv("FORMULA_NAME")
+	description := os.Getenv("FORMULA_DESCRIPTION")
+	mainPaths := pathutil.BuildMainPaths()
+	if !pathutil.RightDir(mainPaths) {
+		return
+	}
 
-	ritchie.Send(ritchie.Msg{Value: "Hello World."})
-	ritchie.Send(ritchie.Msg{Value: input})
+	fileutil.CreateIfNotExists(name)
+	templateFile, _ := fileutil.ReadFile(mainPaths.RitchieScaffoldTemplate + "/template-config.json")
+	fileutil.WriteFile(name+"/config.json", templateFile)
+	color.Green("Generate formula:" + name + " with description:" + description + " .")
+
 }
