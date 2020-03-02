@@ -1,0 +1,475 @@
+{
+  "Commands": [
+    {
+      "Usage": "aws",
+      "Help": "Apply Aws objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "apply",
+      "Help": "Apply Aws objects",
+      "Formula": null,
+      "Parent": "root_aws"
+    },
+    {
+      "Usage": "terraform",
+      "Help": "Apply Aws terraform objects",
+      "Formula": {
+        "Path": "aws/terraform",
+        "Bin": "terraform-cli-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/aws/terraform"
+      },
+      "Parent": "root_aws_apply"
+    },
+    {
+      "Usage": "create",
+      "Help": "Create objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "user",
+      "Help": "Create user",
+      "Formula": null,
+      "Parent": "root_create"
+    },
+    {
+      "Usage": "delete",
+      "Help": "Delete objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "user",
+      "Help": "Delete user",
+      "Formula": null,
+      "Parent": "root_delete"
+    },
+    {
+      "Usage": "context",
+      "Help": "Delete context",
+      "Formula": null,
+      "Parent": "root_delete"
+    },
+    {
+      "Usage": "show",
+      "Help": "Show objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "context",
+      "Help": "Show context",
+      "Formula": null,
+      "Parent": "root_show"
+    },
+    {
+      "Usage": "help",
+      "Help": "Help about any command",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "login",
+      "Help": "User login",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "set",
+      "Help": "Set objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "credential",
+      "Help": "Set provider credential",
+      "Formula": null,
+      "Parent": "root_set"
+    },
+    {
+      "Usage": "context",
+      "Help": "Set context for cli",
+      "Formula": null,
+      "Parent": "root_set"
+    },
+    {
+      "Usage": "completion",
+      "Help": "Generate auto-completion",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "zsh",
+      "Help": "Generates auto-completion for zsh",
+      "Formula": null,
+      "Parent": "root_completion"
+    },
+    {
+      "Usage": "bash",
+      "Help": "Generates auto-completion for bash",
+      "Formula": null,
+      "Parent": "root_completion"
+    },
+    {
+      "Usage": "darwin",
+      "Help": "Darwin commands",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "deploy",
+      "Help": "Deploy Module Darwin",
+      "Formula": {
+        "Path": "darwin/deploy",
+        "Bin": "darwin-deploy-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/darwin/deploy"
+      },
+      "Parent": "root_darwin"
+    },
+    {
+      "Usage": "kafka",
+      "Help": "Kafka commands",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "list",
+      "Help": "Kafka list commands",
+      "Formula": null,
+      "Parent": "root_kafka"
+    },
+    {
+      "Usage": "create",
+      "Help": "Kafka create commands",
+      "Formula": null,
+      "Parent": "root_kafka"
+    },
+    {
+      "Usage": "topic",
+      "Help": "List kafka topics",
+      "Formula": {
+        "Path": "kafka",
+        "Bin": "kafka-${so}",
+        "Config": "list-topic-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
+      },
+      "Parent": "root_kafka_list"
+    },
+    {
+      "Usage": "topic",
+      "Help": "Create kafka topics",
+      "Formula": {
+        "Path": "kafka",
+        "Bin": "kafka-${so}",
+        "Config": "create-topic-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
+      },
+      "Parent": "root_kafka_create"
+    },
+    {
+      "Usage": "consume",
+      "Help": "Consume kafka messages",
+      "Formula": {
+        "Path": "kafka",
+        "Bin": "kafka-${so}",
+        "Config": "consume-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
+      },
+      "Parent": "root_kafka"
+    },
+    {
+      "Usage": "produce",
+      "Help": "Produce kafka messages",
+      "Formula": {
+        "Path": "kafka",
+        "Bin": "kafka-${so}",
+        "Config": "produce-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kafka"
+      },
+      "Parent": "root_kafka"
+    },
+    {
+      "Usage": "scaffold",
+      "Help": "Manipulate scaffold objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "generate",
+      "Help": "Generates a scaffold by some template",
+      "Formula": null,
+      "Parent": "root_scaffold"
+    },
+    {
+      "Usage": "show",
+      "Help": "List commands",
+      "Formula": null,
+      "Parent": "root_scaffold"
+    },
+    {
+      "Usage": "ritchie",
+      "Help": "Scaffold to make ritchie formulas.",
+      "Formula": {
+        "Path": "scaffold/ritchie",
+        "Bin": "ritchie-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/ritchie"
+      },
+      "Parent": "root_scaffold_generate"
+    },
+    {
+      "Usage": "coffee",
+      "Help": "Generates a project by coffee template",
+      "Formula": {
+        "Path": "scaffold/coffee",
+        "Bin": "coffee-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/coffee"
+      },
+      "Parent": "root_scaffold_generate"
+    },
+    {
+      "Usage": "spring-iti",
+      "Help": "Generates a project for kotlin/java",
+      "Formula": {
+        "Path": "scaffold/spring-iti",
+        "Bin": "spring-iti-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-iti"
+      },
+      "Parent": "root_scaffold_generate"
+    },
+    {
+      "Usage": "spring-starter",
+      "Help": "Generates a project Spring",
+      "Formula": {
+        "Path": "scaffold/spring-starter",
+        "Bin": "spring-starter-${so}",
+        "Config": "create-application-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-starter"
+      },
+      "Parent": "root_scaffold_generate"
+    },
+    {
+      "Usage": "spring-starter-dependencies",
+      "Help": "List dependencies Spring",
+      "Formula": {
+        "Path": "scaffold/spring-starter",
+        "Bin": "spring-starter-${so}",
+        "Config": "list-dependencies-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-starter"
+      },
+      "Parent": "root_scaffold_show"
+    },
+    {
+      "Usage": "github",
+      "Help": "Manipulate GitHub objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "generate",
+      "Help": "Generates a scaffold by some template",
+      "Formula": null,
+      "Parent": "root_github"
+    },
+    {
+      "Usage": "navigate",
+      "Help": "Navigate a github by some handbook.",
+      "Formula": null,
+      "Parent": "root_github"
+    },
+    {
+      "Usage": "search",
+      "Help": "Search a github by some handbook.",
+      "Formula": null,
+      "Parent": "root_github"
+    },
+    {
+      "Usage": "fast-merge",
+      "Help": "Help you to merge your code with a deploy branch example qa branch.",
+      "Formula": {
+        "Path": "github/fast-merge",
+        "Bin": "fast-merge-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/fast-merge"
+      },
+      "Parent": "root_github"
+    },
+    {
+      "Usage": "zup-webhook",
+      "Help": "Apply Zup WebHook CI and Zup Bot",
+      "Formula": {
+        "Path": "github/zup-webhook",
+        "Bin": "zup-webhook-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/zup-webhook"
+      },
+      "Parent": "root_github_generate"
+    },
+    {
+      "Usage": "handbook",
+      "Help": "Navigate in your handbook",
+      "Formula": {
+        "Path": "github/navigate-handbook",
+        "Bin": "navigate-handbook-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/navigate-handbook"
+      },
+      "Parent": "root_github_navigate"
+    },
+    {
+      "Usage": "handbook",
+      "Help": "Search in your handbook",
+      "Formula": {
+        "Path": "github/search-handbook",
+        "Bin": "search-handbook-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/github/search-handbook"
+      },
+      "Parent": "root_github_search"
+    },
+    {
+      "Usage": "jenkins",
+      "Help": "Manipulate Jenkins objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "generate",
+      "Help": "Apply Jenkins objects",
+      "Formula": null,
+      "Parent": "root_jenkins"
+    },
+    {
+      "Usage": "job",
+      "Help": "Apply Jenkins Job CI",
+      "Formula": {
+        "Path": "jenkins/jobs",
+        "Bin": "jobs-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/jenkins/jobs"
+      },
+      "Parent": "root_jenkins_generate"
+    },
+    {
+      "Usage": "vivo",
+      "Help": "Manipulate Vivo objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "generate",
+      "Help": "Apply Vivo objects",
+      "Formula": null,
+      "Parent": "root_vivo"
+    },
+    {
+      "Usage": "deploy",
+      "Help": "Deploy Vivo in PRD",
+      "Formula": {
+        "Path": "vivo/deploy",
+        "Bin": "vivo-deploy-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/vivo/deploy"
+      },
+      "Parent": "root_vivo_generate"
+    },
+    {
+      "Usage": "docker",
+      "Help": "Manipulate Docker objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "generate",
+      "Help": "Generate Docker objects",
+      "Formula": null,
+      "Parent": "root_docker"
+    },
+    {
+      "Usage": "compose",
+      "Help": "Generate docker-compose.yml in current directory",
+      "Formula": {
+        "Path": "docker/compose",
+        "Bin": "docker-generate-compose-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/docker/compose"
+      },
+      "Parent": "root_docker_generate"
+    },
+    {
+      "Usage": "k8s",
+      "Help": "Manipulate k8s objects",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "show",
+      "Help": "Show k8s objects",
+      "Formula": null,
+      "Parent": "root_k8s"
+    },
+    {
+      "Usage": "create",
+      "Help": "Create k8s objects",
+      "Formula": null,
+      "Parent": "root_k8s"
+    },
+    {
+      "Usage": "logs",
+      "Help": "Show k8s logs",
+      "Formula": {
+        "Path": "kubernetes/core",
+        "Bin": "kubernetes-${so}",
+        "Config": "logs-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
+      },
+      "Parent": "root_k8s_show"
+    },
+    {
+      "Usage": "health",
+      "Help": "Show k8s health check",
+      "Formula": {
+        "Path": "kubernetes/core",
+        "Bin": "kubernetes-${so}",
+        "Config": "health-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
+      },
+      "Parent": "root_k8s_show"
+    },
+    {
+      "Usage": "port-forward",
+      "Help": "Create k8s port forward",
+      "Formula": {
+        "Path": "kubernetes/core",
+        "Bin": "kubernetes-${so}",
+        "Config": "port-config.json",
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
+      },
+      "Parent": "root_k8s_create"
+    },
+    {
+      "Usage": "vinicius",
+      "Help": "a",
+      "Formula": null,
+      "Parent": "root"
+    },
+    {
+      "Usage": "clemente",
+      "Help": "",
+      "Formula": {
+        "Path": "vinicius/clemente",
+        "Bin": "clemente-${so}",
+        "Config": null,
+        "RepoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/vinicius/clemente"
+      },
+      "Parent": "root_vinicius"
+    }
+  ],
+  "Version": "1.0.0"
+}

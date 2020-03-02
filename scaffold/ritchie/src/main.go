@@ -1,10 +1,15 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/fatih/color"
 	"github.com/thoas/go-funk"
+	"log"
 	"os"
+	"os/exec"
 	"ritchie/pkg/file/fileutil"
 	"ritchie/pkg/ritchie/pathutil"
 	"ritchie/pkg/ritchie/tree"
@@ -22,25 +27,16 @@ func main() {
 
 	nameList := splitName(name)
 	generateFiles(nameList, mainPaths, 0)
-	changeMakeFile()
+	changeMakeFile(nameList, mainPaths)
 
 	treeFile, err := fileutil.ReadFile(mainPaths.TreeFile)
 	verifyError(err)
 	var jsonTree tree.Tree
 	verifyError(json.Unmarshal(treeFile, &jsonTree))
 	jsonTree = changeTreeFile(nameList, mainPaths, 0, jsonTree)
-
-	//rascunho
-
-	//commands := funk.Filter(jsonTree.Commands, func(command tree.Command) bool {
-	//	return command.Parent == "root_github"
-	//})
-	//
-	//jsonTree.Commands = commands.([]tree.Command)
-
 	jsonResult, _ := json.MarshalIndent(jsonTree, "", "  ")
-	verifyError(fileutil.WriteFile("tree/tree2.json", jsonResult))
-	//fim rascunho
+	verifyError(fileutil.WriteFile("tree/tree.json", jsonResult))
+	execCommand("make test-local form=" + strings.ToUpper(nameList[len(nameList)-1]))
 
 	color.Green("Generate formula:" + name + " with description:" + description + " .")
 
@@ -91,8 +87,33 @@ func changeTreeFile(nameList []string, mainPaths pathutil.MainPaths, i int, tree
 	return treeJson
 }
 
-func changeMakeFile() {
-	//todo
+func changeMakeFile(nameList []string, mainPaths pathutil.MainPaths) {
+	templateFile, err := fileutil.ReadFile(mainPaths.MakeFile)
+	verifyError(err)
+	variable := strings.ToUpper(nameList[len(nameList)-1]) + "=" + strings.Join(nameList, "/")
+	templateFile = []byte(
+		strings.ReplaceAll(
+			string(templateFile),
+			"\nFORMULAS=",
+			"\n"+variable+"\nFORMULAS=",
+		),
+	)
+	formulas := getFormulaValue(templateFile)
+
+	templateFile = []byte(
+		strings.ReplaceAll(
+			string(templateFile),
+			formulas,
+			formulas+" $("+strings.ToUpper(nameList[len(nameList)-1])+")",
+		),
+	)
+
+	verifyError(fileutil.WriteFile(mainPaths.MakeFile, templateFile))
+}
+
+func getFormulaValue(file []byte) string {
+	fileString := string(file)
+	return strings.Split(strings.Split(fileString, "FORMULAS=")[1], "\n")[0]
 }
 
 func splitName(name string) []string {
@@ -171,4 +192,28 @@ func verifyError(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func execCommand(value string) string {
+	command := strings.Split(value, " ")[0]
+	params := strings.Split(value, " ")[1:]
+	log.Printf("Executing command: %v params: %v\n", command, params)
+	cmd := exec.Command(command, params...)
+	stdout, _ := cmd.StdoutPipe()
+	var outError bytes.Buffer
+	cmd.Stderr = &outError
+	cmd.Start()
+	scanner := bufio.NewScanner(stdout)
+	scanner.Split(bufio.ScanLines)
+	commandResultMessage := ""
+	for scanner.Scan() {
+		m := scanner.Text()
+		fmt.Println(m)
+		commandResultMessage += m
+	}
+	err := cmd.Wait()
+	if err != nil {
+		log.Fatalf("Failed to execute command %v\nParams: %v\nError: %v", command, params, outError.String())
+	}
+	return commandResultMessage
 }
