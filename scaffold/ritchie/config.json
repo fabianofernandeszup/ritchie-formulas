@@ -4,7 +4,7 @@
     {
       "name": "formula_name",
       "type": "text",
-      "label": "Type the formula name:"
+      "label": "Type the formula name [ex.: rit scaffold generate hello-world]"
     },
     {
       "name": "formula_description",

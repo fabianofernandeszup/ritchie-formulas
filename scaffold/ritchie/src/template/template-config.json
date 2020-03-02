@@ -1,5 +1,5 @@
 {
-  "description": "Scaffold to make ritchie formulas.",
+  "description": "{{description}}",
   "inputs" : [
     {
       "name" : "example_entry",

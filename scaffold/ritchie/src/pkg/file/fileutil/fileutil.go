@@ -121,6 +121,12 @@ func ReadFile(path string) ([]byte, error) {
 
 // WriteFile wrapper for ioutil.WriteFile
 func WriteFile(path string, content []byte) error {
+	if !Exists(path) {
+		_ , err := os.Create(path)
+		if err != nil {
+			panic(err)
+		}
+	}
 	return ioutil.WriteFile(path, content, 0644)
 }
 
