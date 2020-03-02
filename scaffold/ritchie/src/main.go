@@ -118,7 +118,7 @@ func getFormulaValue(file []byte) string {
 
 func splitName(name string) []string {
 	return funk.Filter(strings.Split(name, " "), func(input string) bool {
-		return input != ""
+		return input != "" && input != "rit"
 	}).([]string)
 }
 
