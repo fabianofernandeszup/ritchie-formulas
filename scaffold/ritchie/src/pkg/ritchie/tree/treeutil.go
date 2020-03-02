@@ -13,14 +13,14 @@ package tree
 type Formula struct {
 	Path string
 	Bin string
-	Config string
+	Config *string
 	RepoUrl string
 }
 
 type Command struct {
 	Usage string
 	Help string
-	Formula Formula
+	Formula *Formula
 	Parent string
 }
 

@@ -22,26 +22,77 @@ func main() {
 
 	nameList := splitName(name)
 	generateFiles(nameList, mainPaths, 0)
+	changeMakeFile()
 
-	//rascunho
 	treeFile, err := fileutil.ReadFile(mainPaths.TreeFile)
 	verifyError(err)
 	var jsonTree tree.Tree
 	verifyError(json.Unmarshal(treeFile, &jsonTree))
+	jsonTree = changeTreeFile(nameList, mainPaths, 0, jsonTree)
 
-	commands := funk.Filter(jsonTree.Commands, func(command tree.Command) bool {
-		return command.Parent == "root_github"
-	})
+	//rascunho
 
-	jsonTree.Commands = commands.([]tree.Command)
+	//commands := funk.Filter(jsonTree.Commands, func(command tree.Command) bool {
+	//	return command.Parent == "root_github"
+	//})
+	//
+	//jsonTree.Commands = commands.([]tree.Command)
 
 	jsonResult, _ := json.MarshalIndent(jsonTree, "", "  ")
 	verifyError(fileutil.WriteFile("tree/tree2.json", jsonResult))
 	//fim rascunho
 
-
 	color.Green("Generate formula:" + name + " with description:" + description + " .")
 
+}
+
+func changeTreeFile(nameList []string, mainPaths pathutil.MainPaths, i int, treeJson tree.Tree) tree.Tree {
+	var dir = "-1"
+	command := funk.Filter(treeJson.Commands, func(command tree.Command) bool {
+		return command.Usage == nameList[i]
+	}).([]tree.Command)
+
+	if len(command) == 0 {
+		if i > 0 {
+			dir = "root_" + strings.Join(nameList[0:i], "_")
+		} else {
+			dir = "root"
+		}
+	}
+	if len(nameList)-1 == i {
+		if dir != "-1" {
+			path := strings.Join(nameList, "/")
+			commands := append(treeJson.Commands, tree.Command{
+				Usage: nameList[i],
+				Help:  "",
+				Formula: &tree.Formula{
+					Path:    path,
+					Bin:     nameList[i] + "-${so}",
+					Config:  nil,
+					RepoUrl: "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/" + path,
+				},
+				Parent: dir,
+			})
+			treeJson.Commands = commands
+			return treeJson
+		}
+	} else {
+		if dir != "-1" {
+			commands := append(treeJson.Commands, tree.Command{
+				Usage:   nameList[i],
+				Help:    os.Getenv("FORMULA_DESCRIPTION"),
+				Formula: nil,
+				Parent:  dir,
+			})
+			treeJson.Commands = commands
+			return changeTreeFile(nameList, mainPaths, i+1, treeJson)
+		}
+	}
+	return treeJson
+}
+
+func changeMakeFile() {
+	//todo
 }
 
 func splitName(name string) []string {
