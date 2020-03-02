@@ -1,4 +1,4 @@
-module ritchie
+module hello
 
 go 1.14
 

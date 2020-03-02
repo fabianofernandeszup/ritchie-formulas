@@ -1,4 +1,4 @@
-package ritchie
+package hello
 
 import (
 	"github.com/fatih/color"

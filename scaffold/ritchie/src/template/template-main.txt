@@ -2,13 +2,13 @@ package main
 
 import (
 	"os"
-	"ritchie/pkg/ritchie"
+	"hello/pkg/hello"
 )
 
 func main() {
 
 	 input := os.Getenv("EXAMPLE_ENTRY")
 
-	ritchie.Send(ritchie.Msg{Value: "Hello World. 2"})
-	ritchie.Send(ritchie.Msg{Value: input})
+	hello.Send(hello.Msg{Value: "Hello World. 2"})
+	hello.Send(hello.Msg{Value: input})
 }
