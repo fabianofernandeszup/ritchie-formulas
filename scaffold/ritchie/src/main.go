@@ -71,6 +71,8 @@ func changeTreeFile(nameList []string, mainPaths pathutil.MainPaths, i int, tree
 			})
 			treeJson.Commands = commands
 			return treeJson
+		} else {
+			return treeJson
 		}
 	} else {
 		if dir != "-1" {
@@ -81,10 +83,9 @@ func changeTreeFile(nameList []string, mainPaths pathutil.MainPaths, i int, tree
 				Parent:  dir,
 			})
 			treeJson.Commands = commands
-			return changeTreeFile(nameList, mainPaths, i+1, treeJson)
 		}
 	}
-	return treeJson
+	return changeTreeFile(nameList, mainPaths, i+1, treeJson)
 }
 
 func changeMakeFile(nameList []string, mainPaths pathutil.MainPaths) {
