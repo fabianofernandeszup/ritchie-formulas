@@ -29,8 +29,11 @@ func main() {
 
 	execCommand("make test-local form=" + strings.ToUpper(inputValue.Name))
 
-	color.Green("Generate formula:" + inputValue.Name + " with description:" + inputValue.Description + " .")
-	color.Green("Run with: rit" + strings.Join(inputValue.FullName, " "))
+	color.Green(
+		"Generate formula:" + strings.Join(inputValue.FullName, " ") +
+			"\nwith description:" + inputValue.Description + " .",
+	)
+	color.Green("Run with: rit " + strings.Join(inputValue.FullName, " "))
 	color.Green("Build with: make test-local form=" + strings.ToUpper(inputValue.Name))
 
 }
