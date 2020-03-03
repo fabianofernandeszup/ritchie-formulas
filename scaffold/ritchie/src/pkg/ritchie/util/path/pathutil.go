@@ -1,4 +1,4 @@
-package pathutil
+package path
 
 import (
 	"github.com/fatih/color"
@@ -11,7 +11,7 @@ type MainPaths struct {
 	TreeFile                string
 }
 
-func RightDir(mainPaths MainPaths) bool {
+func IsOnRightDir(mainPaths MainPaths) bool {
 	if fileutil.Exists(mainPaths.TreeFile) ||
 		fileutil.Exists(mainPaths.MakeFile) ||
 		fileutil.Exists(mainPaths.RitchieScaffoldTemplate) {
