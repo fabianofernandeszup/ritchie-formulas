@@ -69,8 +69,8 @@ func generateTreeFile(input input.Input, i int, treeJson Tree) Tree {
 	} else {
 		if len(command) == 0 {
 			commands := append(treeJson.Commands, Command{
-				Usage:   input.Name,
-				Help:    input.Description,
+				Usage:   input.FullName[i],
+				Help:    "",
 				Formula: nil,
 				Parent:  parent,
 			})
