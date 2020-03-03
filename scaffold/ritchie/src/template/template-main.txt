@@ -9,6 +9,6 @@ func main() {
 
 	 input := os.Getenv("EXAMPLE_ENTRY")
 
-	hello.Send(hello.Msg{Value: "Hello World. 2"})
+	hello.Send(hello.Msg{Value: "Hello World."})
 	hello.Send(hello.Msg{Value: input})
 }

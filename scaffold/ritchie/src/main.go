@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"bytes"
-	"fmt"
 	"github.com/fatih/color"
 	"log"
 	"os/exec"
@@ -31,13 +30,14 @@ func main() {
 	execCommand("make test-local form=" + strings.ToUpper(inputValue.Name))
 
 	color.Green("Generate formula:" + inputValue.Name + " with description:" + inputValue.Description + " .")
+	color.Green("Run with: rit" + strings.Join(inputValue.FullName, " "))
+	color.Green("Build with: make test-local form=" + strings.ToUpper(inputValue.Name))
 
 }
 
 func execCommand(value string) string {
 	command := strings.Split(value, " ")[0]
 	params := strings.Split(value, " ")[1:]
-	log.Printf("Executing command: %v params: %v\n", command, params)
 	cmd := exec.Command(command, params...)
 	stdout, _ := cmd.StdoutPipe()
 	var outError bytes.Buffer
@@ -48,7 +48,6 @@ func execCommand(value string) string {
 	commandResultMessage := ""
 	for scanner.Scan() {
 		m := scanner.Text()
-		fmt.Println(m)
 		commandResultMessage += m
 	}
 	err := cmd.Wait()
