@@ -2,6 +2,29 @@
 
 # HOW TO WRITE A FORMULA
 
+for create a ritchie formula you can choose a automatic way or a manual way.
+
+## Use ritchie to create a ritchie formula (Automatic Way)
+
+on the ritchie-formulas home dir:
+
+#### run:
+```
+rit scaffold generate ritchie
+```
+#### and after:
+ - inform how the people will can your formula.
+ - formula description.
+
+#### if everything goes well:
+
+you can run the generated formula with a hello world message and after change the generated code you can build your changes if:
+```
+make test-local form=$name
+```
+- $name is the last name of the formula.
+
+## Create formula manually
 To make sure ritchie-cli will be able to process and use your formulas, the following directory structure must be respected:
 
 ```yaml

@@ -31,7 +31,7 @@ func main() {
 
 	color.Green(
 		"Generate formula:" + strings.Join(inputValue.FullName, " ") +
-			"\nwith description:" + inputValue.Description + " .",
+			"\nwith description:" + inputValue.Description,
 	)
 	color.Green("Run with: rit " + strings.Join(inputValue.FullName, " "))
 	color.Green("Build with: make test-local form=" + strings.ToUpper(inputValue.Name))
