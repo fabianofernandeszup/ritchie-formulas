@@ -25,16 +25,16 @@ func main() {
 
 	tree.ChangeTreeFile(inputValue, mainPaths)
 	template.GenerateFiles(inputValue, mainPaths, 0)
-	makefile.ChangeMakeFile(inputValue, mainPaths)
-
-	execCommand("make test-local form=" + strings.ToUpper(inputValue.Name))
+	makefileVariableName := makefile.ChangeMakeFile(inputValue, mainPaths)
+	fullNameWithSpaces := strings.Join(inputValue.FullName, " ")
+	execCommand("make test-local form=" + makefileVariableName)
 
 	color.Green(
-		"Generate formula:" + strings.Join(inputValue.FullName, " ") +
+		"Generate formula:" + fullNameWithSpaces +
 			"\nwith description:" + inputValue.Description,
 	)
-	color.Green("Run with: rit " + strings.Join(inputValue.FullName, " "))
-	color.Green("Build with: make test-local form=" + strings.ToUpper(inputValue.Name))
+	color.Green("Run with: rit " + fullNameWithSpaces)
+	color.Green("Build with: make test-local form=" + makefileVariableName)
 
 }
 

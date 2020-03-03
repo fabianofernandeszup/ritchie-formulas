@@ -1,6 +1,7 @@
 package makefile
 
 import (
+	"github.com/thoas/go-funk"
 	"ritchie/pkg/file/fileutil"
 	"ritchie/pkg/ritchie/util/error"
 	"ritchie/pkg/ritchie/util/input"
@@ -8,10 +9,11 @@ import (
 	"strings"
 )
 
-func ChangeMakeFile(inputValue input.Input, mainPaths path.MainPaths) {
+func ChangeMakeFile(inputValue input.Input, mainPaths path.MainPaths) string {
 	templateFile, err := fileutil.ReadFile(mainPaths.MakeFile)
 	error.VerifyError(err)
-	variable := strings.ToUpper(inputValue.Name) + "=" + strings.Join(inputValue.FullName, "/")
+	variableName := generateVariableName(inputValue)
+	variable := variableName + "=" + strings.Join(inputValue.FullName, "/")
 	templateFile = []byte(
 		strings.ReplaceAll(
 			string(templateFile),
@@ -30,6 +32,17 @@ func ChangeMakeFile(inputValue input.Input, mainPaths path.MainPaths) {
 	)
 
 	error.VerifyError(fileutil.WriteFile(mainPaths.MakeFile, templateFile))
+	return variableName
+}
+
+func generateVariableName(inputValue input.Input) string {
+	return strings.Join(toUpper(inputValue.FullName), "_")
+}
+
+func toUpper(fullName []string) []string {
+	return funk.Map(fullName, func(name string) string {
+		return strings.ToUpper(name)
+	}).([]string)
 }
 
 func getFormulaValue(file []byte) string {

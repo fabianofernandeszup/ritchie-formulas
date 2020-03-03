@@ -22,7 +22,7 @@ you can run the generated formula with a hello world message and after change th
 ```
 make test-local form=$name
 ```
-- $name is the last name of the formula.
+- $name is the formula name in to upper case and snake case. 
 
 ## Create formula manually
 To make sure ritchie-cli will be able to process and use your formulas, the following directory structure must be respected:
