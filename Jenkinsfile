@@ -49,6 +49,7 @@ pipeline{
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github-ci-marte-zup', passwordVariable: 'git_passwd', usernameVariable: 'git_user')]) {
                     sh "git config --global user.name ${git_user}"
+                    sh "git config --global user.email ${git_user}@zup-jenkins.com"
                     sh "git remote rm upstream || exit 0"
                     sh "git remote add upstream https://${git_user}:${git_passwd}@github.com/${githubDestinationOrg}/${githubDestinationRepo}.git"
                     sh "git remote -v"
