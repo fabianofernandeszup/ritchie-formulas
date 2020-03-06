@@ -52,7 +52,7 @@ pipeline{
                     sh "git remote rm upstream || exit 0"
                     sh "git remote add upstream https://${git_user}:${git_passwd}@github.com/${githubDestinationOrg}/${githubDestinationRepo}.git"
                     sh "git remote -v"
-                    sh "rm -rm vivo"
+                    sh "rm -rf vivo"
                     sh "git add . && git commit -m \"jenkins: rm unnecessary files\""
                     sh "git fetch upstream"
                     sh "git push -u upstream HEAD:${githubDestinationBranch} -f"
