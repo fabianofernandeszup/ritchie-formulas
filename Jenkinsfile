@@ -2,6 +2,11 @@ def RITCHIE_AWS_ACCESS_KEY_ID = env["DOCKER_AWS_ACCESS_KEY_ID_PRODUCTION_MARTE"]
 def RITCHIE_AWS_SECRET_ACCESS_KEY = env["DOCKER_AWS_SECRET_ACCESS_KEY_PRODUCTION_MARTE"]
 def RITCHIE_AWS_REGION_PRODUCTION_MARTE = "sa-east-1"
 
+def jobNameParts = JOB_NAME.tokenize('/') as String[];
+def githubDestinationRepo = jobNameParts[0];
+def githubDestinationBranch = "marte"
+def githubDestinationOrg = "martetech"
+
 pipeline{
     agent {
         dockerfile {
@@ -37,6 +42,23 @@ pipeline{
                 }
             }
       }
+        stage("Sync with martetech repo") {
+            when {
+              branch 'marte'
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'github-ci-marte-zup', passwordVariable: 'git_passwd', usernameVariable: 'git_user')]) {
+                    sh "git config --global user.name ${git_user}"
+                    sh "git remote rm upstream || exit 0"
+                    sh "git remote add upstream https://${git_user}:${git_passwd}@github.com/${githubDestinationOrg}/${githubDestinationRepo}.git"
+                    sh "git remote -v"
+                    sh "rm -rm vivo"
+                    sh "git add . && git commit -m \"jenkins: rm unnecessary files\""
+                    sh "git fetch upstream"
+                    sh "git push -u upstream HEAD:${githubDestinationBranch} -f"
+                }
+            }
+        }
     }
     post {
         success {
