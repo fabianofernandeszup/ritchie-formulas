@@ -12,8 +12,8 @@ type MainPaths struct {
 }
 
 func IsOnRightDir(mainPaths MainPaths) bool {
-	if fileutil.Exists(mainPaths.TreeFile) ||
-		fileutil.Exists(mainPaths.MakeFile) ||
+	if fileutil.Exists(mainPaths.TreeFile) &&
+		fileutil.Exists(mainPaths.MakeFile) &&
 		fileutil.Exists(mainPaths.RitchieScaffoldTemplate) {
 		return true
 	}
