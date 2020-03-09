@@ -8,12 +8,14 @@ SEARCH_HANDBOOK=github/search-handbook
 JENKINS_JOB=jenkins/jobs
 SC_COFFEE=scaffold/coffee
 SC_SPRING=scaffold/spring-iti
+SC_SPRING_STARTER=scaffold/spring-starter
+SC_RITCHIE=scaffold/ritchie
 KAFKA=kafka
 VIVO=vivo/deploy
 DOCKER=docker/compose
 KUBERNETES=kubernetes/core
 FAST_MERGE=github/fast-merge
-FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(KAFKA) $(VIVO) $(DOCKER) $(NAVIGATE_HANDBOOK) $(SEARCH_HANDBOOK) $(KUBERNETES) $(FAST_MERGE)
+FORMULAS=$(TERRAFORM) $(DARWIN) $(WEBHOOK) $(JENKINS_JOB) $(SC_COFFEE) $(SC_SPRING) $(SC_SPRING_STARTER) $(KAFKA) $(VIVO) $(DOCKER) $(NAVIGATE_HANDBOOK) $(SEARCH_HANDBOOK) $(KUBERNETES) $(FAST_MERGE) $(SC_RITCHIE)
 
 PWD_INITIAL=$(shell pwd)
 
@@ -37,13 +39,16 @@ test-local:
 ifneq "$(FORM)" ""
 	echo "true: $(FORM)"
 	$(MAKE) bin FORMULAS=$(FORM)
+	mkdir -p ~/.rit/formulas
 	rm -rf ~/.rit/formulas/$(FORM)
+	./unzip-bin-configs.sh
 	cp -r formulas/* ~/.rit/formulas
 	rm -rf formulas
 else
 	echo "true: $(FORM)"
 	$(MAKE) bin
 	rm -rf ~/.rit/formulas
+	./unzip-bin-configs.sh
 	mv formulas ~/.rit
 endif
 	rm -rf ~/.rit/.cmd_tree.json

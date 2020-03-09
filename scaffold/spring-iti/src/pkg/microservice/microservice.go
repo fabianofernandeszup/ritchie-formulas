@@ -11,20 +11,20 @@ import (
 )
 
 const (
-	genURL = "https://iti-initializr.itiaws.dev/starter.zip"
+	genURL      = "https://iti-initializr.itiaws.dev/starter.zip"
 	jenkinsFile = "Jenkinsfile"
 )
 
 type Inputs struct {
-	Packaging string
-	JavaVersion string
-	Language string
-	GroupId string
-	ArtifactId string
-	Version string
-	Name string
-	Description string
-	PackageName string
+	Packaging    string
+	JavaVersion  string
+	Language     string
+	GroupId      string
+	ArtifactId   string
+	Version      string
+	Name         string
+	Description  string
+	PackageName  string
 	Dependencies string
 }
 
@@ -32,7 +32,7 @@ func Run(inputs Inputs) {
 	log.Println("Starting scaffold generation...")
 	zipFile, err := downloadZipProject(inputs)
 	if err != nil {
-		log.Fatal("Failed to download starter project", err)
+		log.Fatal("Failed to download starter project\n", err)
 	}
 	err = unzipFile(zipFile)
 	if err != nil {
@@ -50,10 +50,9 @@ func (i Inputs) changePermissionJenkinsFile() error {
 	return fileutil.ChangePermission(file, 0755)
 }
 
-
 func unzipFile(filename string) error {
 	log.Println("Unzip files...")
-	destFolder := strings.Replace(filename, ".zip", "",1)
+	destFolder := strings.Replace(filename, ".zip", "", 1)
 	fileutil.CreateIfNotExists(destFolder, 0755)
 	err := fileutil.Unzip(filename, destFolder)
 	if err != nil {
@@ -90,6 +89,11 @@ func downloadZipProject(inputs Inputs) (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode != 200 {
+		log.Println(req.URL)
+		err := fmt.Errorf("Invalid parameters ou dependencies! Response Status Code: %s", resp.Status)
+		return "", err
+	}
 	prjfile := fmt.Sprintf("%s.zip", inputs.Name)
 	out, err := os.Create(prjfile)
 	if err != nil {

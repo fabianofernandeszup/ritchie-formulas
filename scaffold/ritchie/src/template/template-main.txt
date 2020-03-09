@@ -1,0 +1,14 @@
+package main
+
+import (
+	"os"
+	"hello/pkg/hello"
+)
+
+func main() {
+
+	 input := os.Getenv("EXAMPLE_ENTRY")
+
+	hello.Send(hello.Msg{Value: "Hello World."})
+	hello.Send(hello.Msg{Value: input})
+}

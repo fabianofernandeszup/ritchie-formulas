@@ -180,6 +180,21 @@
       "parent": "root_scaffold"
     },
     {
+      "usage": "show",
+      "help": "List commands",
+      "parent": "root_scaffold"
+    },
+    {
+      "usage": "ritchie",
+      "help": "Scaffold to make ritchie formulas.",
+      "formula": {
+        "path": "scaffold/ritchie",
+        "bin": "ritchie-${so}",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/ritchie"
+      },
+      "parent": "root_scaffold_generate"
+    },
+    {
       "usage": "coffee",
       "help": "Generates a project by coffee template",
       "formula": {
@@ -198,6 +213,28 @@
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-iti"
       },
       "parent": "root_scaffold_generate"
+    },
+    {
+      "usage": "spring-starter",
+      "help": "Generates a project Spring",
+      "formula": {
+        "path": "scaffold/spring-starter",
+        "bin": "spring-starter-${so}",
+        "config": "create-application-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-starter"
+      },
+      "parent": "root_scaffold_generate"
+    },
+    {
+      "usage": "spring-starter-dependencies",
+      "help": "List dependencies Spring",
+      "formula": {
+        "path": "scaffold/spring-starter",
+        "bin": "spring-starter-${so}",
+        "config": "list-dependencies-config.json",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/spring-starter"
+      },
+      "parent": "root_scaffold_show"
     },
     {
       "usage": "github",
