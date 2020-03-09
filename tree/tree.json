@@ -185,6 +185,16 @@
       "parent": "root_scaffold"
     },
     {
+      "usage": "ritchie",
+      "help": "Scaffold to make ritchie formulas.",
+      "formula": {
+        "path": "scaffold/ritchie",
+        "bin": "ritchie-${so}",
+        "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/scaffold/ritchie"
+      },
+      "parent": "root_scaffold_generate"
+    },
+    {
       "usage": "coffee",
       "help": "Generates a project by coffee template",
       "formula": {

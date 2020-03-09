@@ -1,0 +1,15 @@
+{
+  "description": "Scaffold to make ritchie formulas.",
+  "inputs": [
+    {
+      "name": "formula_name",
+      "type": "text",
+      "label": "Type the formula name [ex.: rit scaffold generate hello-world]"
+    },
+    {
+      "name": "formula_description",
+      "type": "text",
+      "label": "Type the formula description:"
+    }
+  ]
+}
