@@ -1,3 +1,7 @@
+def jobNameParts = JOB_NAME.tokenize('/') as String[];
+def githubDestinationRepo = jobNameParts[0];
+def githubDestinationBranch = "marte"
+def githubDestinationOrg = "martetech"
 def buildable = false
 
 pipeline{
