@@ -21,10 +21,12 @@ PWD_INITIAL=$(shell pwd)
 FORM = $($(form))
 
 push-s3:
+	echo $(RITCHIE_AWS_BUCKET)
 	echo "Init pwd: $(PWD_INITIAL)"
 	for formula in $(FORMULAS); do cd $$formula/src && make build && cd $(PWD_INITIAL) || exit; done
 	./copy-bin-configs.sh "$(FORMULAS)"
-	aws s3 cp . s3://ritchie-cli-bucket152849730126474/ --exclude "*" --include "formulas/*" --recursive
+	aws s3 cp . s3://$(RITCHIE_AWS_BUCKET)/ --exclude "*" --include "formulas/*" --recursive
+	aws s3 cp . s3://$(RITCHIE_AWS_BUCKET)/ --exclude "*" --include "tree/tree.json" --recursive
 	rm -rf formulas
 
 bin:
