@@ -6,6 +6,17 @@ import (
 	"strings"
 )
 
+// String show a password and parse to string.
+func StringPwd(name string) (string, error) {
+	var prompt = promptui.Prompt{
+		Label:     name,
+		Validate:  validateEmptyInput,
+		Templates: defaultTemplate(),
+		Mask:      '*',
+	}
+	return prompt.Run()
+}
+
 // String show a prompt and parse to string.
 func String(name string, required bool) (string, error) {
 	var prompt promptui.Prompt

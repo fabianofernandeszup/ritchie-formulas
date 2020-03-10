@@ -8,16 +8,18 @@ import (
 func main() {
 	var selectItems []string
 	selectItem := ""
-	postgresDB := ""
-	postgresUser := ""
-	postgresPassword := ""
-	items := []string{"awsclivl", "consul", "dynamoDB", "jaeger", "kafka", "postgres", "redis", "stubby4j", "finish!"}
+	var extParams = make(map[string]string)
+	items := []string{"awsclivl", "consul", "dynamoDB", "jaeger", "kafka", "mongo", "postgres", "redis", "stubby4j", "finish!"}
 	for selectItem != "finish!" {
 		selectItem, _ = prompt.List("Select docker image: ", items)
 		if selectItem == "postgres" {
-			postgresDB, _ = prompt.String("Type DB name: ", true)
-			postgresUser, _ = prompt.String("Type DB user: ", true)
-			postgresPassword, _ = prompt.String("Type DB password: ", true)
+			extParams["postgresDB"], _ = prompt.String("Type DB name: ", true)
+			extParams["postgresUser"], _ = prompt.String("Type DB user: ", true)
+			extParams["postgresPassword"], _ = prompt.StringPwd("Type DB password: ")
+		}
+		if selectItem == "mongo" {
+			extParams["mongoWebClientUser"], _ = prompt.String("Type Mongo WebClient user: ", true)
+			extParams["mongoWebClientPassword"], _ = prompt.StringPwd("Type Mongo WebClient password: ")
 		}
 		selectItems = append(selectItems, selectItem)
 		for i, item := range items {
@@ -28,5 +30,5 @@ func main() {
 		}
 	}
 
-	compose.GenerateYml(selectItems, postgresDB, postgresUser, postgresPassword)
+	compose.GenerateYml(selectItems, extParams)
 }

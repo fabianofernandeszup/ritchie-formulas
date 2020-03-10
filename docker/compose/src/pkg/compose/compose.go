@@ -50,6 +50,32 @@ services:`
       - POSTGRES_PASSWORD={{POSTGRES_PASSWORD}}
       - MAX_CONNECTIONS=300`
 
+	mongoYml = `  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo
+    volumes:
+      - ./mongo_data:/data/db
+    ports:
+      - "27017:27017"
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+    links:
+      - mongo:mongo
+    environment:
+      - ME_CONFIG_BASICAUTH_USERNAME={{MONGO_WEBCLIENT_USER}}
+      - ME_CONFIG_BASICAUTH_PASSWORD={{MONGO_WEBCLIENT_PASSWORD}}
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true`
+
 	stubby4jYml = `  stubby4j:
     image: joncanning/stubby4j
     ports:
@@ -106,37 +132,46 @@ services:`
     status: 200`
 )
 
-func GenerateYml(items []string, postgresDB, postgresUser, postgresPassword string) {
+func GenerateYml(items []string, extParams map[string]string) {
 	ymlString := headYml + "\n"
-	for _, item := range items {
-		switch item {
-		case "kafka":
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, kafkaYml)
-		case "postgres":
-			postgresYmlString := postgresYml
-			postgresYmlString = strings.Replace(postgresYmlString, "{{POSTGRES_DB}}", postgresDB, -1)
-			postgresYmlString = strings.Replace(postgresYmlString, "{{POSTGRES_USER}}", postgresUser, -1)
-			postgresYmlString = strings.Replace(postgresYmlString, "{{POSTGRES_PASSWORD}}", postgresPassword, -1)
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, postgresYmlString)
-		case "stubby4j":
-			createIfNotExists("files/stubby4j", 0755)
-			writeFile("files/stubby4j/integrations.yml", []byte(integretionYml))
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, stubby4jYml)
-		case "jaeger":
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, jaegerYml)
-		case "dynamoDB":
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, dynamodbYml)
-		case "awsclivl":
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, awscliv1Yml)
-		case "redis":
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, redisYml)
-		case "consul":
-			ymlString = fmt.Sprintf("%s%s\n\n", ymlString, consulYml)
+	if len(items) == 1 {
+		fmt.Println("No docker image selected")
+	} else {
+		for _, item := range items {
+			switch item {
+			case "kafka":
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, kafkaYml)
+			case "postgres":
+				postgresYmlString := postgresYml
+				postgresYmlString = strings.Replace(postgresYmlString, "{{POSTGRES_DB}}", extParams["postgresDB"], -1)
+				postgresYmlString = strings.Replace(postgresYmlString, "{{POSTGRES_USER}}", extParams["postgresUser"], -1)
+				postgresYmlString = strings.Replace(postgresYmlString, "{{POSTGRES_PASSWORD}}", extParams["postgresPassword"], -1)
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, postgresYmlString)
+			case "mongo":
+				mongoYmlString := mongoYml
+				mongoYmlString = strings.Replace(mongoYmlString, "{{MONGO_WEBCLIENT_USER}}", extParams["mongoWebClientUser"], -1)
+				mongoYmlString = strings.Replace(mongoYmlString, "{{MONGO_WEBCLIENT_PASSWORD}}", extParams["mongoWebClientPassword"], -1)
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, mongoYmlString)
+			case "stubby4j":
+				createIfNotExists("files/stubby4j", 0755)
+				writeFile("files/stubby4j/integrations.yml", []byte(integretionYml))
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, stubby4jYml)
+			case "jaeger":
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, jaegerYml)
+			case "dynamoDB":
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, dynamodbYml)
+			case "awsclivl":
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, awscliv1Yml)
+			case "redis":
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, redisYml)
+			case "consul":
+				ymlString = fmt.Sprintf("%s%s\n\n", ymlString, consulYml)
+			}
 		}
+		writeFile("docker-compose.yml", []byte(ymlString))
+		fmt.Println("Generated files in the current directory")
+		fmt.Println("Run:\ndocker-compose up")
 	}
-	writeFile("docker-compose.yml", []byte(ymlString))
-	fmt.Println("Generated files in the current directory")
-	fmt.Println("Run:\ndocker-compose up")
 }
 
 // WriteFile wrapper for ioutil.WriteFile
