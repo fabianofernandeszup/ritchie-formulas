@@ -1,0 +1,15 @@
+{
+  "description": "Exponential calculation of a number",
+  "inputs" : [
+    {
+      "name" : "base",
+      "type" : "text",
+      "label" : "Type base value: "
+    },
+    {
+      "name" : "exponent",
+      "type" : "text",
+      "label" : "Type exponent value: "
+    }
+  ]
+}

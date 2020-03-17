@@ -403,6 +403,20 @@
         "repoUrl": "http://ritchie-cli-bucket152849730126474.s3-website-sa-east-1.amazonaws.com/formulas/kubernetes/core"
       },
       "parent": "root_k8s_create"
+    },
+    {
+      "usage": "exponentiation",
+      "help": "Exponential calculation of a number",
+      "parent": "root"
+    },
+    {
+      "usage": "calculate",
+      "help": "Execute the calculation of base and exponent",
+      "formula": {
+        "path": "exponentiation/calculate",
+        "bin": "calculate-expo-${so}"
+      },
+      "parent": "root_exponentiation"
     }
   ],
   "version": "1.0.0-dev"
