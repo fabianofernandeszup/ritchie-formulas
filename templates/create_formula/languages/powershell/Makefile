@@ -13,6 +13,9 @@ bash-build:
 
 sh-unix:
 	echo '#!/usr/bin/pwsh' > $(SH)
+	echo 'if ($$env:DOCKER_EXECUTION) {'
+	echo '	cd /rit'
+	echo '}'
 	echo './$(BIN_NAME)' >> $(SH)
 	chmod +x $(SH)
 
