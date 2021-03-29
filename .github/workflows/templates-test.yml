@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   templates-test-macos:
-    name: Templates Tests Mac OS
+    name: Tests Mac OS
     runs-on: macos-latest
 
     steps:
@@ -15,9 +15,11 @@ jobs:
         run: |
           curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
           rit --version
+          echo '{"addCommons":false, "sendMetrics":true, "runType":"local"}' | rit init --stdin > /dev/null
+          rit
 
   templates-test-ubuntu:
-    name: Templates Tests Ubuntu
+    name: Tests Ubuntu
     runs-on: ubuntu-latest
 
     steps:
@@ -28,9 +30,11 @@ jobs:
         run: |
           curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
           rit --version
+          echo '{"addCommons":false, "sendMetrics":true, "runType":"local"}' | rit init --stdin > /dev/null
+          rit
 
   templates-test-windows:
-    name: Templates Tests Windows
+    name: Tests Windows
     runs-on: windows-latest
 
     steps:
