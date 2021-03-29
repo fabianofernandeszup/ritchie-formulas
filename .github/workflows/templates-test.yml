@@ -20,8 +20,8 @@ jobs:
 
       - name: Create formulas
         run: |
-          mkdir -p $HOME/workspace-template-test
-          cp $HOME/.rit/repos/commons/templates/create_formula/languages/* $HOME/workspace-template-test/
+          mkdir -p $HOME/workspace-template-test/
+          cp -R $HOME/.rit/repos/commons/templates/create_formula/languages/* $HOME/workspace-template-test/
           rit add workspace --name="templates-test" --path="$HOME/workspace-template-test/"
           rit
 
