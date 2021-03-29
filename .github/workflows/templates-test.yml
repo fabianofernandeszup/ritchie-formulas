@@ -15,7 +15,14 @@ jobs:
         run: |
           curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
           rit --version
-          echo '{"addCommons":false, "sendMetrics":true, "runType":"local"}' | rit init --stdin > /dev/null
+          echo '{"addCommons":true, "sendMetrics":true, "runType":"local"}' | rit init --stdin > /dev/null
+          rit
+
+      - name: Create formulas
+        run: |
+          mkdir -p $HOME/workspace-template-test
+          cp $HOME/.rit/repos/commons/templates/create_formula/languages/* $HOME/workspace-template-test/
+          rit add workspace --name="templates-test" --path="$HOME/workspace-template-test/"
           rit
 
   templates-test-ubuntu:
