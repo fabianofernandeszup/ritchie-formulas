@@ -23,7 +23,7 @@ jobs:
           pwd
           ls -lha
           mkdir -p $HOME/workspace-template-test/
-          cp -R ./languages/* $HOME/workspace-template-test/
+          cp -R ./templates/create_formula/languages/* $HOME/workspace-template-test/
           rit add workspace --name="templatestest" --path="$HOME/workspace-template-test/"
           rit list workspace
 #
