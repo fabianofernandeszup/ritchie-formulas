@@ -1,0 +1,41 @@
+name: Tests Templates
+
+on: [push]
+
+jobs:
+  templates-test-macos:
+    name: Templates Tests Mac OS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Ritchie CLI
+        run: |
+          curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
+          rit --version
+
+  templates-test-ubuntu:
+    name: Templates Tests Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Ritchie CLI
+        run: |
+          curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
+          rit --version
+
+  templates-test-windows:
+    name: Templates Tests Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Ritchie CLI
+        run: echo %PATH%
