@@ -26,6 +26,7 @@ jobs:
           cp -R ./templates/create_formula/languages/* $HOME/workspace-template-test/
           rit add workspace --name="templatestest" --path="$HOME/workspace-template-test/"
           rit list workspace
+          rit
 #
 #  templates-test-ubuntu:
 #    name: Tests Ubuntu
