@@ -26,29 +26,29 @@ jobs:
           cp -R ./languages/* $HOME/workspace-template-test/
           rit add workspace --name="templatestest" --path="$HOME/workspace-template-test/"
           rit list workspace
-
-  templates-test-ubuntu:
-    name: Tests Ubuntu
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Ritchie CLI
-        run: |
-          curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
-          rit --version
-          echo '{"addCommons":false, "sendMetrics":true, "runType":"local"}' | rit init --stdin > /dev/null
-          rit
-
-  templates-test-windows:
-    name: Tests Windows
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Ritchie CLI
-        run: echo %PATH%
+#
+#  templates-test-ubuntu:
+#    name: Tests Ubuntu
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Install Ritchie CLI
+#        run: |
+#          curl -fsSL https://commons-repo.ritchiecli.io/install.sh | bash
+#          rit --version
+#          echo '{"addCommons":false, "sendMetrics":true, "runType":"local"}' | rit init --stdin > /dev/null
+#          rit
+#
+#  templates-test-windows:
+#    name: Tests Windows
+#    runs-on: windows-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Install Ritchie CLI
+#        run: echo %PATH%
